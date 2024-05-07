@@ -1,3 +1,3 @@
 export enum SUCCESSFUL_MESSAGE {
-  ALGO_FEITO = "String de sucesso!",
+  ME_ROUTE_SUCESS = "Success in obtaining user information!",
 }

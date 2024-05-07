@@ -1,3 +1,3 @@
 export enum EXCEPTION_MESSAGE {
-  ALGUM_ERRO = "String do Erro"
+  INTERNAL_SERVER_ERROR = "Sorry, something went wrong on our end."
 }
