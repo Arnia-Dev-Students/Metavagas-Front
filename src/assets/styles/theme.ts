@@ -1,4 +1,6 @@
-const light = {
+import { DefaultTheme } from "styled-components";
+
+export const light: DefaultTheme = {
   name: "Default",
   colors: {
     primary: "#",
@@ -44,4 +46,3 @@ const light = {
   },
 };
 
-export default light;
