@@ -5,6 +5,7 @@ export default createGlobalStyle`
     --dark: #313131;
   }
 
+
   * {
     margin: 0;
     padding: 0;
@@ -16,10 +17,12 @@ export default createGlobalStyle`
 
   html {
     font-size: 16px;
+    font-family: 'Poppins';
   }
 
   body, input, select, textarea {
     font-size: 1rem;
-    color: var(--dark);
+    background-color: #1A1033;
+    
   }
 `;

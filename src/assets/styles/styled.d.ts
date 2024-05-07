@@ -4,16 +4,15 @@ declare module "styled-components" {
   export interface DefaultTheme {
     name: string;
     colors: {
-      primary: string;
-      secondary: string;
-      success: string;
-      danger: string;
-      warning: string;
-      info: string;
-      light: string;
-      dark: string;
-      background: string;
-      text: string;
+      preto: string;
+      amarelo: string;
+      roxo: string;
+      cinza2: string;
+      roxoMedio: string;
+      cinza1: string;
+      iris: string;
+      branco: string;
+      cinza3: string;
     };
     fonts: {
       primary: string;

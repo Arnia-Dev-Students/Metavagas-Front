@@ -1,28 +1,29 @@
-const light = {
+import { DefaultTheme } from "styled-components";
+
+export const light: DefaultTheme = {
   name: "Default",
   colors: {
-    primary: "#",
-    secondary: "#",
-    success: "#",
-    danger: "#",
-    warning: "#",
-    info: "#",
-    light: "#",
-    dark: "#",
-    background: "#",
-    text: "#",
+    preto: "#1A1033",
+    amarelo: "#FBB04D",
+    roxo: "#6950A1",
+    cinza2: "#4A4A68",
+    roxoMedio: "#B2A1D9",
+    cinza1: "#A6A8AB",
+    iris: "#5D5FEF",
+    branco: "#FFFFFF",
+    cinza3: "#8C8CA1",
   },
   fonts: {
-    primary: "",
+    primary: "Poppins",
     secondary: "",
   },
   fontSizes: {
-    small: "0.875rem",
-    normal: "1rem",
-    medium: "1.25rem",
-    large: "1.5rem",
-    xLarge: "2rem",
-    xxLarge: "2.5rem",
+    small: "12px",
+    normal: "14px",
+    medium: "16px",
+    large: "18px",
+    xLarge: "32",
+    xxLarge: "48px",
   },
   borderRadius: {
     small: "4px",
@@ -44,4 +45,3 @@ const light = {
   },
 };
 
-export default light;
