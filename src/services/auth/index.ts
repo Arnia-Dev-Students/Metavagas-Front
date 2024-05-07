@@ -1,5 +1,5 @@
 import api from "../api";
-import { MeDTO } from "./DTOI";
+import { MeDTO } from "./DTO";
 import { SUCCESSFUL_MESSAGE } from "../../utils/enums/successful-message";
 import { HttpStatusCode, isAxiosError } from "axios";
 import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
