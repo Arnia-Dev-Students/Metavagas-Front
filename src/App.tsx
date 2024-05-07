@@ -16,7 +16,7 @@ function App() {
         USER CONTEXT
       THEME PROVIDER */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
