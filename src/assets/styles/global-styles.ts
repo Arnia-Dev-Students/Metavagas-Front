@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import '@fontsource/poppins'
 
 export default createGlobalStyle`
   :root {
@@ -9,6 +10,7 @@ export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
   }
 
   *, ::after, ::before {
@@ -17,12 +19,14 @@ export default createGlobalStyle`
 
   html {
     font-size: 16px;
-    font-family: 'Poppins';
+    
   }
 
-  body, input, select, textarea {
-    font-size: 1rem;
+  body {    
     background-color: #1A1033;
+    margin: 0;
+    padding: 0;
+    
     
   }
 `;
