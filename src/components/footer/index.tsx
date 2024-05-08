@@ -4,7 +4,7 @@ const Footer = () => {
     
     return (
         <FooterStyle>
-            footer teste
+            footer teste do teste do 
         </FooterStyle>
     )
 

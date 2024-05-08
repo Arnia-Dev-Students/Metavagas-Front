@@ -6,5 +6,4 @@ export const FooterStyle = styled.div`
   position: sticky;
   top: 0;
   display: flex;
-  padding: 20px;
 `;
