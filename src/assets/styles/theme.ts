@@ -22,7 +22,7 @@ export const light: DefaultTheme = {
     normal: "14px",
     medium: "16px",
     large: "18px",
-    xLarge: "32",
+    xLarge: "32px",
     xxLarge: "48px",
   },
   borderRadius: {

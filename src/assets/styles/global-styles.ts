@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import '@fontsource/poppins'
+import "@fontsource/poppins";
 
 export default createGlobalStyle`
   :root {
@@ -17,12 +17,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html {
-    font-size: 16px;
-    
-  }
-
-  body {    
+ body {    
     background-color: #1A1033;
     margin: 0;
     padding: 0;
