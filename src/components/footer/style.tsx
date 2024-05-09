@@ -8,12 +8,14 @@ export const FooterStyle = styled.div`
   display: flex;
   justify-content: space-between;
   border-top: 2px solid #FBB04D;
+  align-items: baseline;
 `;
 
 export const TitleDados = styled.p`
   color: ${(props) => props.theme.colors.amarelo};
   font-size: ${(props) => props.theme.fontSizes.medium};
-  font-weight: 600;
+  font-weight: 500;
+  margin-bottom: 10px;
 `;
 export const PDados = styled.p`
   font-weight: 400;
@@ -24,7 +26,7 @@ export const PDados = styled.p`
 export const Tel = styled(Telephone)`
   color: ${(props) => props.theme.colors.preto};
   background-color: ${(props) => props.theme.colors.amarelo};
-  width: 20px;
+  width: 30px;
   padding: 5px;
   font-weight: 600;
   border-radius: 50%;

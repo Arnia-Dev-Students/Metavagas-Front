@@ -30,8 +30,9 @@ const Footer = () => {
           </PDados>
           <PDados>
             <IcLocal />
-            Av. do Contorno, 2905 Santa Efigênia, Belo Horizonte - MG, 30110-080
+            Av. do Contorno, 2905 Santa Efigênia,
           </PDados>
+          <PDados>Belo Horizonte - MG, 30110-080</PDados>
         </Contatos>
         <div>
           <EntrarBtn>Entrar</EntrarBtn>

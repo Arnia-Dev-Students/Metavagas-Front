@@ -6,24 +6,13 @@ import { Conteiner, Layout } from "./style";
 export default function Baselayout() {
   return (
     <>
-        <Conteiner>
-          <Layout>
-        <NavBar />
-        <div>
-          padada
-        </div>
-        <p>pda</p>
-        <p>pda</p>
-        <p>pda</p>
-        <p>pda</p><p>pda</p><p>pda</p><p>pda</p><p>pda</p>
-        <Outlet />
-        <Footer />
-          </Layout>
-        </Conteiner>
-      
-      
+      <Conteiner>
+        <Layout>
+          <NavBar />          
+          <Outlet />         
+          <Footer />
+        </Layout>
+      </Conteiner>
     </>
   );
 }
-
-//1320
