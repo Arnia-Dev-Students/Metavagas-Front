@@ -9,6 +9,13 @@ export default function Baselayout() {
         <Conteiner>
           <Layout>
         <NavBar />
+        <div>
+          padada
+        </div>
+        <p>pda</p>
+        <p>pda</p>
+        <p>pda</p>
+        <p>pda</p><p>pda</p><p>pda</p><p>pda</p><p>pda</p>
         <Outlet />
         <Footer />
           </Layout>

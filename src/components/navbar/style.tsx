@@ -25,13 +25,13 @@ export const EntrarBtn = styled.button`
 
 export const Meta = styled.span`
   font-weight: 600;
-  font-size: ${(props) => props.theme.fontSizes.xxLarge};
+  font-size: ${(props) => props.theme.fontSizes.xLarge};
   color: white;
   
 `
 export const Vagas = styled.span`
   font-weight: 600;
-  font-size: ${(props) => props.theme.fontSizes.xxLarge};
+  font-size: ${(props) => props.theme.fontSizes.xLarge};
   color: ${(props) => props.theme.colors.amarelo};
   font-style: italic;
   
