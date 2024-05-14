@@ -6,13 +6,16 @@ import { Conteiner, Layout } from "./style";
 export default function Baselayout() {
   return (
     <>
-      <Conteiner>
-        <Layout>
-          <NavBar />          
-          <Outlet />         
-          <Footer />
-        </Layout>
-      </Conteiner>
+      <Layout>
+        <Conteiner>
+        <NavBar />
+        </Conteiner>       
+        <Outlet />
+        <Conteiner>
+        <Footer />
+        </Conteiner>
+        
+      </Layout>
     </>
   );
 }

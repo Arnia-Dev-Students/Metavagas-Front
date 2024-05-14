@@ -1,12 +1,6 @@
 import { Conteiner } from "../../components/baselayot/style";
 import { useNavigate } from "react-router-dom";
 import {
-  ConteinerLogin,
-  ConteinerWhithe,
-  Loginh1,
-  Plogin,
-  Ptext,
-  Textdiv,
   Loginform,
   Formh3,
   DivForm,
@@ -15,21 +9,26 @@ import {
   LoginBtn,
   RodapeForm,
   Astyled,
+  Textdiv,
+  Plogin,
+  Loginh1,
+  Ptext,
+  ConteinerWhithe,
   DicasCadastro,
-  CardDiv,
   TitleCard,
+  CardDiv,
   SubMedium,
   SubMedium2,
   Pcard,
-} from "./style";
+} from "../login/style";
+import { ConteinerCadastro } from "./style";
 
-const Login = () => {
+const Cadastro = () => {
   const navigation = useNavigate();
-
   return (
     <>
       <Loginform action="">
-        <Formh3>Faça seu login</Formh3>
+        <Formh3>Faça seu cadastro</Formh3>
 
         <DivForm>
           <Inputlabel htmlFor="email">Seu e-mail</Inputlabel>
@@ -46,18 +45,31 @@ const Login = () => {
         </DivForm>
 
         <DivForm>
-          <LoginBtn>Entrar</LoginBtn>
+          <Inputlabel htmlFor="confirmaPasword">Confirmar senha</Inputlabel>
+          <Inputlogin
+            name="senha"
+            type="password"
+            placeholder="*************"
+          />
+        </DivForm>
+
+        <DivForm>
+          <LoginBtn>Cadastrar</LoginBtn>
         </DivForm>
 
         <RodapeForm>
-          Não é cadastrado?{" "}
-          <Astyled onClick={() => {navigation("/cadastro")}}>
-            Cadastre-se gratuitamente
+          Ja é cadastrado?{" "}
+          <Astyled
+            onClick={() => {
+              navigation("/login");
+            }}
+          >
+            Faça o login
           </Astyled>
         </RodapeForm>
       </Loginform>
       <Conteiner>
-        <ConteinerLogin>
+        <ConteinerCadastro>
           <Textdiv>
             <Plogin>FAÇA SEU LOGIN</Plogin>
             <Loginh1>
@@ -70,7 +82,7 @@ const Login = () => {
               <p>Receba alertas sobre as vagas que você procura</p>
             </Ptext>
           </Textdiv>
-        </ConteinerLogin>
+        </ConteinerCadastro>
       </Conteiner>
       <ConteinerWhithe>
         <Conteiner>
@@ -107,4 +119,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Cadastro;

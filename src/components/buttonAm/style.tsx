@@ -7,5 +7,6 @@ export const StyledButton = styled.button`
   cursor: pointer;
   border-radius: 8px;
   color: ${(props) => props.theme.colors.preto};
+  font-weight: 500;
   
 `;

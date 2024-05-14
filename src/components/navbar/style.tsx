@@ -10,6 +10,7 @@ export const NavStyle = styled.nav`
   border-bottom: 2px solid black;
   align-items: center;
   justify-content: space-between;
+  width: 85%;
 `;
 
 export const EntrarBtn = styled.button`

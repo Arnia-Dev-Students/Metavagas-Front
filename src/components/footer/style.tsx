@@ -4,11 +4,14 @@ import { EmailOutline } from "@styled-icons/evaicons-outline/EmailOutline";
 import { Location } from "@styled-icons/evil/Location";
 
 export const FooterStyle = styled.div`
-  padding-top: 8%;
+  padding-bottom: 5%;
+  padding-top: 5%;
   display: flex;
   justify-content: space-between;
-  border-top: 2px solid #FBB04D;
+  border-top: 2px solid #fbb04d;
   align-items: baseline;
+  background-color: ${(props) => props.theme.colors.preto};
+  width: 85%;
 `;
 
 export const TitleDados = styled.p`
@@ -17,7 +20,7 @@ export const TitleDados = styled.p`
   font-weight: 500;
   margin-bottom: 10px;
 `;
-export const PDados = styled.p`
+export const PDados = styled.div` 
   font-weight: 400;
   color: ${(props) => props.theme.colors.branco};
   font-size: ${(props) => props.theme.fontSizes.medium};
@@ -30,27 +33,30 @@ export const Tel = styled(Telephone)`
   padding: 5px;
   font-weight: 600;
   border-radius: 50%;
-  margin-right: 1.5%;
+  margin-right: 3%;
+  margin-top: 10px;
 `;
 
 export const Email = styled(EmailOutline)`
   color: ${(props) => props.theme.colors.preto};
   background-color: ${(props) => props.theme.colors.amarelo};
-  width: 20px;
+  width: 30px;
   padding: 5px;
   font-weight: 600;
   border-radius: 50%;
-  margin-right: 1.5%;
+  margin-right: 3%;
+  margin-top: 10px;
 `;
 
 export const IcLocal = styled(Location)`
   color: ${(props) => props.theme.colors.preto};
   background-color: ${(props) => props.theme.colors.amarelo};
-  width: 20px;
+  width: 30px;
   padding: 5px;
   font-weight: 600;
   border-radius: 50%;
-  margin-right: 1.5%;
+  margin-right: 3%;
+  margin-top: 10px;
 `;
 
 export const Contatos = styled.div`

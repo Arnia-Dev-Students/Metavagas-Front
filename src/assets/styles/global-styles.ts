@@ -19,7 +19,7 @@ export default createGlobalStyle`
   }
 
  body {    
-    background-color: #1A1033;
+    background-color: ${(props) => props.theme.colors.preto};
     margin: 0;
     padding: 0;
     
