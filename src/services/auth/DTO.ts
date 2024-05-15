@@ -11,15 +11,14 @@ export namespace LoginDTO {
   };
 }
 
-type RoleEnum = "admin" | "advertiser" | "candidate";
 
 export namespace RegisterDTO {
   export type IParams = {
-    id: number;
     name: string;
     email: string;
-    role: RoleEnum;
+    password: string    
   };
+  
   export type IResponse = User & {
     password: string;
   };

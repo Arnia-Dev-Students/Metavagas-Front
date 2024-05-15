@@ -19,6 +19,7 @@ export const Ptext = styled.div`
   color: ${(props) => props.theme.colors.branco};
   font-size: ${(props) => props.theme.fontSizes.medium};
   margin-bottom: 3%;
+  display: flex;
 `;
 export const ConteinerLogin = styled.div`
   margin-bottom: 5%;
@@ -128,3 +129,9 @@ export const Pcard = styled.p`
   font-size: ${(props) => props.theme.fontSizes.medium};
   color: ${(props) => props.theme.colors.branco};
 `;
+
+export const ErrorForm = styled.span`
+  font-size: ${(props) => props.theme.fontSizes.small};
+  color: red
+  
+`
