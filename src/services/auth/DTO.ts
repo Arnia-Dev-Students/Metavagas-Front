@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { User } from "../../models/user";
 
 export namespace LoginDTO {

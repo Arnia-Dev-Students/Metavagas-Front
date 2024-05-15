@@ -1,110 +1,131 @@
 import { Conteiner } from "../../components/baselayot/style";
 import { useNavigate } from "react-router-dom";
-import {
-  ConteinerLogin,
-  ConteinerWhithe,
-  Loginh1,
-  Plogin,
-  Ptext,
-  Textdiv,
-  Loginform,
-  Formh3,
-  DivForm,
-  Inputlabel,
-  Inputlogin,
-  LoginBtn,
-  RodapeForm,
-  Astyled,
-  DicasCadastro,
-  CardDiv,
-  TitleCard,
-  SubMedium,
-  SubMedium2,
-  Pcard,
-} from "./style";
+import { useForm } from "react-hook-form";
+import * as S from "./style";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Login } from "../../services/auth";
+import { FORM_MESSAGE } from "../../enums/formMensage";
+export const LoginPag = () => {
+  const navigate = useNavigate();
 
-const Login = () => {
-  const navigation = useNavigate();
+  type LoginFormData = z.infer<typeof loginFormSchema>;
 
+  const loginFormSchema = z.object({
+    email: z
+      .string({ message: FORM_MESSAGE.EMAIL })
+      .min(6, FORM_MESSAGE.EMAIL)
+      .email(FORM_MESSAGE.EMAIL)
+      .toLowerCase(),
+    password: z.string().min(8, FORM_MESSAGE.PASSWORD),
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginFormSchema),
+  });
+
+  const handleLogin = async (data: LoginFormData) => {
+    const { ...rest } = data;
+    console.log("teste");
+    const result = await Login(rest);
+    console.log(result);
+    navigate("home");
+  };
   return (
     <>
-      <Loginform action="">
-        <Formh3>Faça seu login</Formh3>
+      <S.Loginform onSubmit={handleSubmit(handleLogin)}>
+        <S.Formh3>Faça seu login</S.Formh3>
 
-        <DivForm>
-          <Inputlabel htmlFor="email">Seu e-mail</Inputlabel>
-          <Inputlogin type="text" name="email" placeholder="ana@gmail.com" />
-        </DivForm>
+        <S.DivForm>
+          <S.Inputlabel htmlFor="email" {...register("email")}>
+            Seu e-mail
+          </S.Inputlabel>
+          <S.Inputlogin type="text" name="email" placeholder="ana@gmail.com" />
 
-        <DivForm>
-          <Inputlabel htmlFor="pasword">Senha</Inputlabel>
-          <Inputlogin
+          {errors.email && <p>{errors.email.message}</p>}
+
+          {<div>{errors?.email?.message}</div> }
+          
+        </S.DivForm>
+
+        <S.DivForm>
+          <S.Inputlabel htmlFor="senha">Senha</S.Inputlabel>
+          <S.Inputlogin
+            {...register("password")}
             name="senha"
             type="password"
             placeholder="*************"
           />
-        </DivForm>
+          {errors.password && <p>{errors.password.message}</p>}
+        </S.DivForm>
 
-        <DivForm>
-          <LoginBtn>Entrar</LoginBtn>
-        </DivForm>
+        <S.DivForm>
+          <S.LoginBtn type="submit">Entrar</S.LoginBtn>
+        </S.DivForm>
 
-        <RodapeForm>
+        <S.RodapeForm>
           Não é cadastrado?{" "}
-          <Astyled onClick={() => {navigation("/cadastro")}}>
+          <S.Astyled
+            onClick={() => {
+              navigate("/cadastro");
+            }}
+          >
             Cadastre-se gratuitamente
-          </Astyled>
-        </RodapeForm>
-      </Loginform>
+          </S.Astyled>
+        </S.RodapeForm>
+      </S.Loginform>
       <Conteiner>
-        <ConteinerLogin>
-          <Textdiv>
-            <Plogin>FAÇA SEU LOGIN</Plogin>
-            <Loginh1>
+        <S.ConteinerLogin>
+          <S.Textdiv>
+            <S.Plogin>FAÇA SEU LOGIN</S.Plogin>
+            <S.Loginh1>
               Fique por dentro <p>de todas as vagas</p>
-            </Loginh1>
-            <Ptext>
+            </S.Loginh1>
+            <S.Ptext>
               <p>Com um único cadastro você consegue encontrar sua vaga </p>
-            </Ptext>
-            <Ptext>
+            </S.Ptext>
+            <S.Ptext>
               <p>Receba alertas sobre as vagas que você procura</p>
-            </Ptext>
-          </Textdiv>
-        </ConteinerLogin>
+            </S.Ptext>
+          </S.Textdiv>
+        </S.ConteinerLogin>
       </Conteiner>
-      <ConteinerWhithe>
+      <S.ConteinerWhithe>
         <Conteiner>
-          <DicasCadastro>
-            <TitleCard>Cadastrar na Meta Vagas é simples 👉</TitleCard>
-            <CardDiv>
-              <SubMedium>01</SubMedium>
-              <SubMedium2>Crie sua conta</SubMedium2>
-              <Pcard>
+          <S.DicasCadastro>
+            <S.TitleCard>Cadastrar na Meta Vagas é simples 👉</S.TitleCard>
+            <S.CardDiv>
+              <S.SubMedium>01</S.SubMedium>
+              <S.SubMedium2>Crie sua conta</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-            <CardDiv>
-              <SubMedium>02</SubMedium>
-              <SubMedium2>Busque sua vaga</SubMedium2>
-              <Pcard>
+              </S.Pcard>
+            </S.CardDiv>
+            <S.CardDiv>
+              <S.SubMedium>02</S.SubMedium>
+              <S.SubMedium2>Busque sua vaga</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-            <CardDiv>
-              <SubMedium>03</SubMedium>
-              <SubMedium2>Receba sugestões</SubMedium2>
-              <Pcard>
+              </S.Pcard>
+            </S.CardDiv>
+            <S.CardDiv>
+              <S.SubMedium>03</S.SubMedium>
+              <S.SubMedium2>Receba sugestões</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-          </DicasCadastro>
+              </S.Pcard>
+            </S.CardDiv>
+          </S.DicasCadastro>
         </Conteiner>
-      </ConteinerWhithe>
+      </S.ConteinerWhithe>
     </>
   );
 };
 
-export default Login;
+export default LoginPag;

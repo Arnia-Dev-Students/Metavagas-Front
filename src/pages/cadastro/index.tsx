@@ -1,120 +1,100 @@
 import { Conteiner } from "../../components/baselayot/style";
 import { useNavigate } from "react-router-dom";
-import {
-  Loginform,
-  Formh3,
-  DivForm,
-  Inputlabel,
-  Inputlogin,
-  LoginBtn,
-  RodapeForm,
-  Astyled,
-  Textdiv,
-  Plogin,
-  Loginh1,
-  Ptext,
-  ConteinerWhithe,
-  DicasCadastro,
-  TitleCard,
-  CardDiv,
-  SubMedium,
-  SubMedium2,
-  Pcard,
-} from "../login/style";
+import * as S from "../login/style";
 import { ConteinerCadastro } from "./style";
 
 const Cadastro = () => {
   const navigation = useNavigate();
   return (
     <>
-      <Loginform action="">
-        <Formh3>Faça seu cadastro</Formh3>
+      <S.Loginform action="">
+        <S.Formh3>Faça seu cadastro</S.Formh3>
 
-        <DivForm>
-          <Inputlabel htmlFor="email">Seu e-mail</Inputlabel>
-          <Inputlogin type="text" name="email" placeholder="ana@gmail.com" />
-        </DivForm>
+        <S.DivForm>
+          <S.Inputlabel htmlFor="email">Seu e-mail</S.Inputlabel>
+          <S.Inputlogin type="text" name="email" placeholder="ana@gmail.com" />
+        </S.DivForm>
 
-        <DivForm>
-          <Inputlabel htmlFor="pasword">Senha</Inputlabel>
-          <Inputlogin
+        <S.DivForm>
+          <S.Inputlabel htmlFor="pasword">Senha</S.Inputlabel>
+          <S.Inputlogin
             name="senha"
             type="password"
             placeholder="*************"
           />
-        </DivForm>
+        </S.DivForm>
 
-        <DivForm>
-          <Inputlabel htmlFor="confirmaPasword">Confirmar senha</Inputlabel>
-          <Inputlogin
+        <S.DivForm>
+          <S.Inputlabel htmlFor="confirmaPasword">Confirmar senha</S.Inputlabel>
+          <S.Inputlogin
             name="senha"
             type="password"
             placeholder="*************"
           />
-        </DivForm>
+        </S.DivForm>
 
-        <DivForm>
-          <LoginBtn>Cadastrar</LoginBtn>
-        </DivForm>
+        <S.DivForm>
+          <S.LoginBtn>Cadastrar</S.LoginBtn>
+        </S.DivForm>
 
-        <RodapeForm>
+        <S.RodapeForm>
           Ja é cadastrado?{" "}
-          <Astyled
+          <S.Astyled
             onClick={() => {
               navigation("/login");
             }}
           >
             Faça o login
-          </Astyled>
-        </RodapeForm>
-      </Loginform>
+          </S.Astyled>
+        </S.RodapeForm>
+      </S.Loginform>
       <Conteiner>
         <ConteinerCadastro>
-          <Textdiv>
-            <Plogin>FAÇA SEU LOGIN</Plogin>
-            <Loginh1>
+          <S.Textdiv>
+            <S.Plogin>FAÇA SEU LOGIN</S.Plogin>
+            <S.Loginh1>
               Fique por dentro <p>de todas as vagas</p>
-            </Loginh1>
-            <Ptext>
+            </S.Loginh1>
+            <S.Ptext>
               <p>Com um único cadastro você consegue encontrar sua vaga </p>
-            </Ptext>
-            <Ptext>
+            </S.Ptext>
+            <S.Ptext>
               <p>Receba alertas sobre as vagas que você procura</p>
-            </Ptext>
-          </Textdiv>
+            </S.Ptext>
+          </S.Textdiv>
         </ConteinerCadastro>
       </Conteiner>
-      <ConteinerWhithe>
+      <S.ConteinerWhithe>
         <Conteiner>
-          <DicasCadastro>
-            <TitleCard>Cadastrar na Meta Vagas é simples 👉</TitleCard>
-            <CardDiv>
-              <SubMedium>01</SubMedium>
-              <SubMedium2>Crie sua conta</SubMedium2>
-              <Pcard>
+          <S.DicasCadastro>
+            <S.TitleCard>Cadastrar na Meta Vagas é simples 👉</S.TitleCard>
+            <S.CardDiv>
+              <S.SubMedium>01</S.SubMedium>
+              <S.SubMedium2>Crie sua conta</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-            <CardDiv>
-              <SubMedium>02</SubMedium>
-              <SubMedium2>Busque sua vaga</SubMedium2>
-              <Pcard>
+              </S.Pcard>
+            </S.CardDiv>
+            <S.CardDiv>
+              <S.SubMedium>02</S.SubMedium>
+              <S.SubMedium2>Busque sua vaga</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-            <CardDiv>
-              <SubMedium>03</SubMedium>
-              <SubMedium2>Receba sugestões</SubMedium2>
-              <Pcard>
+              </S.Pcard>
+            </S.CardDiv>
+            <S.CardDiv>
+              <S.SubMedium>03</S.SubMedium>
+              <S.SubMedium2>Receba sugestões</S.SubMedium2>
+              <S.Pcard>
                 Lorem ipsum dolor sit amet consectetur. Nec nunc scelerisque
                 nulla mauris.
-              </Pcard>
-            </CardDiv>
-          </DicasCadastro>
+              </S.Pcard>
+            </S.CardDiv>
+          </S.DicasCadastro>
         </Conteiner>
-      </ConteinerWhithe>
+      </S.ConteinerWhithe>
     </>
   );
 };
