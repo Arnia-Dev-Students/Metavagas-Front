@@ -3,10 +3,13 @@ import { StyledButton } from "./style";
 
 interface CadastroBtnProps {
   children: ReactNode;
+  onClick: () => void;
 }
 
-const CadastroBtn = ({ children, ...rest }: CadastroBtnProps) => (
-  <StyledButton {...rest}>{children}</StyledButton>
+const CadastroBtn = ({ children, onClick, ...rest }: CadastroBtnProps) => (
+  <StyledButton onClick={onClick} {...rest}>
+    {children}
+  </StyledButton>
 );
 
 export default CadastroBtn;

@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "../pages/login";
+import LoginPag from "../pages/login";
 import Baselayout from "../components/baselayot/baseLayout";
+import Cadastro from "../pages/cadastro";
 
-export const Router = () => (
+const Router = () => (
   <BrowserRouter>
     <Routes>
-      <Route element={<Login />} />
-
       <Route element={<Baselayout />} path="/">
-        <Route />
-
-        
+        <Route element={<LoginPag />} path="/login" />
+        <Route element={<Cadastro />} path="/cadastro" />
       </Route>
     </Routes>
   </BrowserRouter>
 );
+
+export default Router;

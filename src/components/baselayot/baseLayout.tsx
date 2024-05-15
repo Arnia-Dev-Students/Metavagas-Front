@@ -6,24 +6,16 @@ import { Conteiner, Layout } from "./style";
 export default function Baselayout() {
   return (
     <>
+      <Layout>
         <Conteiner>
-          <Layout>
         <NavBar />
-        <div>
-          padada
-        </div>
-        <p>pda</p>
-        <p>pda</p>
-        <p>pda</p>
-        <p>pda</p><p>pda</p><p>pda</p><p>pda</p><p>pda</p>
+        </Conteiner>       
         <Outlet />
+        <Conteiner>
         <Footer />
-          </Layout>
         </Conteiner>
-      
-      
+        
+      </Layout>
     </>
   );
 }
-
-//1320

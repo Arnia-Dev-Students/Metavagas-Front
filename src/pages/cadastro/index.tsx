@@ -1,84 +1,55 @@
 import { Conteiner } from "../../components/baselayot/style";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import * as S from "./style";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Login } from "../../services/auth";
-import { FORM_MESSAGE } from "../../enums/formMensage";
-export const LoginPag = () => {
-  const navigate = useNavigate();
+import * as S from "../login/style";
+import { ConteinerCadastro } from "./style";
 
-  type LoginFormData = z.infer<typeof loginFormSchema>;
-
-  const loginFormSchema = z.object({
-    email: z
-      .string({ message: FORM_MESSAGE.EMAIL })
-      .min(6, FORM_MESSAGE.EMAIL)
-      .email(FORM_MESSAGE.EMAIL)
-      .toLowerCase(),
-    password: z.string().min(8, FORM_MESSAGE.PASSWORD),
-  });
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginFormSchema),
-  });
-
-  const handleLogin = async (data: LoginFormData) => {
-    const { ...rest } = data;
-    console.log("teste");
-    const result = await Login(rest);
-    console.log(result);
-    navigate("home");
-  };
+const Cadastro = () => {
+  const navigation = useNavigate();
   return (
     <>
-      <S.Loginform onSubmit={handleSubmit(handleLogin)}>
-        <S.Formh3>Faça seu login</S.Formh3>
+      <S.Loginform action="">
+        <S.Formh3>Faça seu cadastro</S.Formh3>
 
         <S.DivForm>
-          <S.Inputlabel htmlFor="email" {...register("email")}>
-            Seu e-mail
-          </S.Inputlabel>
+          <S.Inputlabel htmlFor="email">Seu e-mail</S.Inputlabel>
           <S.Inputlogin type="text" name="email" placeholder="ana@gmail.com" />
-
-          {errors.email && <p>{errors.email.message}</p>}
-
-          {<div>{errors?.email?.message}</div> }
-          
         </S.DivForm>
 
         <S.DivForm>
-          <S.Inputlabel htmlFor="senha">Senha</S.Inputlabel>
+          <S.Inputlabel htmlFor="pasword">Senha</S.Inputlabel>
           <S.Inputlogin
-            {...register("password")}
             name="senha"
             type="password"
             placeholder="*************"
           />
-          {errors.password && <p>{errors.password.message}</p>}
         </S.DivForm>
 
         <S.DivForm>
-          <S.LoginBtn type="submit">Entrar</S.LoginBtn>
+          <S.Inputlabel htmlFor="confirmaPasword">Confirmar senha</S.Inputlabel>
+          <S.Inputlogin
+            name="senha"
+            type="password"
+            placeholder="*************"
+          />
+        </S.DivForm>
+
+        <S.DivForm>
+          <S.LoginBtn>Cadastrar</S.LoginBtn>
         </S.DivForm>
 
         <S.RodapeForm>
-          Não é cadastrado?{" "}
+          Ja é cadastrado?{" "}
           <S.Astyled
             onClick={() => {
-              navigate("/cadastro");
+              navigation("/login");
             }}
           >
-            Cadastre-se gratuitamente
+            Faça o login
           </S.Astyled>
         </S.RodapeForm>
       </S.Loginform>
       <Conteiner>
-        <S.ConteinerLogin>
+        <ConteinerCadastro>
           <S.Textdiv>
             <S.Plogin>FAÇA SEU LOGIN</S.Plogin>
             <S.Loginh1>
@@ -91,7 +62,7 @@ export const LoginPag = () => {
               <p>Receba alertas sobre as vagas que você procura</p>
             </S.Ptext>
           </S.Textdiv>
-        </S.ConteinerLogin>
+        </ConteinerCadastro>
       </Conteiner>
       <S.ConteinerWhithe>
         <Conteiner>
@@ -128,4 +99,4 @@ export const LoginPag = () => {
   );
 };
 
-export default LoginPag;
+export default Cadastro;

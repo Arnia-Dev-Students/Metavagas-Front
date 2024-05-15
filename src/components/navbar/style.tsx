@@ -10,8 +10,8 @@ export const NavStyle = styled.nav`
   border-bottom: 2px solid black;
   align-items: center;
   justify-content: space-between;
+  width: 85%;
 `;
-
 
 export const EntrarBtn = styled.button`
   color: white;
@@ -27,12 +27,11 @@ export const Meta = styled.span`
   font-weight: 600;
   font-size: ${(props) => props.theme.fontSizes.xLarge};
   color: white;
-  
-`
+`;
 export const Vagas = styled.span`
   font-weight: 600;
   font-size: ${(props) => props.theme.fontSizes.xLarge};
   color: ${(props) => props.theme.colors.amarelo};
   font-style: italic;
-  
-`
+`;
+

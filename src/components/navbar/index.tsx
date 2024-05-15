@@ -10,7 +10,7 @@ const NavBar = () => {
       </div>
       <div>
         <EntrarBtn>Entrar</EntrarBtn>
-        <CadastroBtn>Cadastre-se gratuitamente</CadastroBtn>
+        <CadastroBtn onClick={() => {window.alert('botao funcionou')}}>Cadastre-se gratuitamente</CadastroBtn>
       </div>
     </NavStyle>
   );

@@ -11,6 +11,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
   }
 
   *, ::after, ::before {
@@ -18,7 +19,7 @@ export default createGlobalStyle`
   }
 
  body {    
-    background-color: #1A1033;
+    background-color: ${(props) => props.theme.colors.preto};
     margin: 0;
     padding: 0;
     
