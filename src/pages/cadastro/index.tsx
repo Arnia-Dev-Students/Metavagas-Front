@@ -127,9 +127,9 @@ const Cadastro = () => {
       <Conteiner>
         <ConteinerCadastro>
           <S.Textdiv>
-            <S.Plogin>FAÇA SEU LOGIN</S.Plogin>
+            <S.Plogin>CADASTRE-SE</S.Plogin>
             <S.Loginh1>
-              Fique por dentro <p>de todas as vagas</p>
+              Fique por dentro de todas as vagas
             </S.Loginh1>
             <S.Ptext>
               <Userplus />
