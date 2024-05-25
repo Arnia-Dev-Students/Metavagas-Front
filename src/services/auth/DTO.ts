@@ -24,7 +24,9 @@ export namespace RegisterDTO {
   };
 }
 
-export namespace DEFINIR_DTO {
-  export type IParams = {};
-  export type IResponse = {};
+export namespace MeDTO {
+  export type IParams = {
+    token: string;
+  };
+  export type IResponse = User;
 }

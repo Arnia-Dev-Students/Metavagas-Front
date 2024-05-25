@@ -48,7 +48,7 @@ const Cadastro = () => {
       const result = await Register(user);
 
       if (result.success) {
-        navigate("home");
+        navigate("/login");
       } else {
         console.log("Registration failed");
       }

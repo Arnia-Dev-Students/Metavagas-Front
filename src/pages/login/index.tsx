@@ -4,12 +4,14 @@ import { useForm } from "react-hook-form";
 import * as S from "./style";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Login } from "../../services/auth";
+import { Login, Me } from "../../services/auth";
 import { FORM_MESSAGE } from "../../enums/formMensage";
 import { EmailOut, Userplus } from "../cadastro/style";
+import { useUserContext } from "../../hooks/user/use-user-context";
 
 export const LoginPag = () => {
   const navigate = useNavigate();
+  const { updateUser } = useUserContext()
 
   const loginFormSchema = z.object({
     email: z
@@ -32,11 +34,26 @@ export const LoginPag = () => {
 
   const handleLogin = async (data: LoginFormData) => {
     const { ...rest } = data;
-    console.log("teste");
-    const result = await Login(rest);
-    console.log(result);
-    navigate("home");
+    const { success, message, token} = await Login(rest);
+
+    if (!success || !token) {
+      //definir como vai mostrar a falha de login
+      console.log(message)
+      return
+    }
+
+    localStorage.setItem("metavagas-token", token);
+
+    const { user } = await Me({ token });
+
+    if(user) {
+      updateUser(user, token)
+    }
+
+    navigate("/");
   };
+
+
   return (
     <>
       <S.Loginform onSubmit={handleSubmit(handleLogin)}>
