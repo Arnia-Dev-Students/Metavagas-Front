@@ -8,4 +8,12 @@ export enum SUCCESSFUL_MESSAGE {
   PATCH_COMPANY = "Successfully updated company!",
   DELETE_COMPANY = "Successfully deleted company!",
   POST_VACANCY = "Successfully created vacancy!",
+  GET_TECHNOLOGY = "Successfully retrieved technology!",
+  POST_TECHNOLOGY = "Successfully created a technology!",
+  PATCH_TECHNOLOGY = "Successfully updated technology!",
+  DELETE_TECHNOLOGY = "Successfully deleted technology!",
+  GET_VACANCY = "GET_VACANCY",
+  GET_VACANCIES = "GET_VACANCIES",
+  PATCH_VACANCY = "PATCH_VACANCY",
+  DELETE_VACANCY = "DELETE_VACANCY",
 }
