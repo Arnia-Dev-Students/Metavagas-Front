@@ -5,13 +5,14 @@ import CadastroBtn from "../../components/buttonAm";
 import { Conteiner85 } from "../home/style";
 import { ConteinerWhithe } from "../login/style";
 import * as S from "./style";
+import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
   
   const [values, setValues] = useState([0, 80000]);
 
-  const handleSliderChange = (newValues: number[]) => {
-    setValues(newValues);
+  const handleSliderChange = (newValues: number | readonly number[]) => {
+    setValues(newValues as number[]);
   };
 
   return (
@@ -42,47 +43,60 @@ const PagListagem = () => {
                   <S.SubH3>Tecnologia</S.SubH3>
 
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="checkbox" name="react" id="react" />
+                    <S.CheckboxLabel htmlFor="react">React</S.CheckboxLabel>
+                  </S.Inputsdiv>
+
+                  <S.Inputsdiv>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">PHP</S.CheckboxLabel>
                   </S.Inputsdiv>
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">Java</S.CheckboxLabel>
                   </S.Inputsdiv>
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">Phyton</S.CheckboxLabel>
                   </S.Inputsdiv>
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">.Net</S.CheckboxLabel>
                   </S.Inputsdiv>
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">CSS</S.CheckboxLabel>
                   </S.Inputsdiv>
+
                   <S.Inputsdiv>
-                    <input type="Checkbox" name="react" />
-                    <label htmlFor="">React</label>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">HTML</S.CheckboxLabel>
                   </S.Inputsdiv>
+
+                  <S.Inputsdiv>
+                    <S.CheckboxInput type="Checkbox" name="react" />
+                    <S.CheckboxLabel htmlFor="">Ruby</S.CheckboxLabel>
+                  </S.Inputsdiv>
+
+                  <S.Bluesp>Ver mais...</S.Bluesp>
                 </div>
 
                 <div>
                   <S.SubH3>Tipo de vaga</S.SubH3>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Remoto</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Remoto</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Presencial</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Presencial</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Hibrido</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Hibrido</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
 
@@ -90,13 +104,13 @@ const PagListagem = () => {
                   <S.SubH3>Regime de trabalho</S.SubH3>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Clt</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Clt</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">PJ</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">PJ</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
 
@@ -104,31 +118,36 @@ const PagListagem = () => {
                   <S.SubH3>Tamanho da empresa</S.SubH3>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Pequena</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Pequena</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Média</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Média</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Grande</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Grande</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
 
                 <div>
-                  <S.SubH3>Faixa salarial</S.SubH3>
-                  <span>
-                    R$ {values[0]} - R$ {values[1]}
-                  </span>
+                  <S.SubH3>
+                    Faixa salarial
+                    <p>
+                      <S.StyleSpan>
+                        R$ {values[0]} - R$ {values[1]}
+                      </S.StyleSpan>
+                    </p>
+                  </S.SubH3>
+
                   <S.SliderWrapper>
                     <S.StyledSlider
                       value={values}
                       min={0}
-                      max={80000}
+                      max={30000}
                       step={100}
                       onChange={handleSliderChange}
                       renderThumb={(props) => <S.StyledThumb {...props} />}
@@ -140,22 +159,22 @@ const PagListagem = () => {
                 </div>
 
                 <div>
-                  <h3>Nível de experiencia</h3>
+                  <S.SubH3>Nível de experiencia</S.SubH3>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Júnior</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Júnior</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
                     {" "}
-                    <input type="checkbox" />
-                    <label htmlFor="">Pleno</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Pleno</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <input type="checkbox" />
-                    <label htmlFor="">Sênior</label>
+                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxLabel htmlFor="">Sênior</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
                 <CadastroBtn
@@ -168,7 +187,15 @@ const PagListagem = () => {
               </S.Filtrodiv>
 
               <S.Listagemdiv2>
-                <div> fds</div>
+                <S.Graficodiv>
+                  <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
+                  <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
+                </S.Graficodiv>
+                <div>
+                  <Vagas />
+                  <Vagas />
+                  <Vagas />
+                </div>
               </S.Listagemdiv2>
             </S.DivLayout>
           </Conteiner85>

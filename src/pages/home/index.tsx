@@ -36,7 +36,9 @@ const Home = () => {
             <S.Bodydiv>
             
               <S.Homeh2>Vagas mais recentes</S.Homeh2>
+
               <S.Griddiv>
+                
                 <VagaCard
                   title="Desenvolvedor Frontend"
                   location="São Paulo, SP"
