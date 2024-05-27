@@ -11,6 +11,10 @@ export const ConteinerP = styled.div<ContainerProps>`
     props.theme === "dark"
       ? css`
           background-color: #1a1033;
+          border-radius: 16px;
+          padding: 25px;
+          width: 100%;
+          color: white;
         `
       : css`
           background-color: white;
@@ -24,7 +28,7 @@ export const ConteinerP = styled.div<ContainerProps>`
 `;
 
 export const RecentSearches = styled.div`
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -46,6 +50,7 @@ export const Inputdiv = styled.div`
 
 export const LabelStyle = styled.label`
   width: 100%;
+  
 `;
 export const InputStyle = styled.input`
   width: 100%;

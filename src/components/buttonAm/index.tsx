@@ -4,10 +4,12 @@ import { StyledButton } from "./style";
 interface CadastroBtnProps {
   children: ReactNode;
   onClick: () => void;
+  width?: string; 
+  
 }
 
-const CadastroBtn = ({ children, onClick, ...rest }: CadastroBtnProps) => (
-  <StyledButton onClick={onClick} {...rest}>
+const CadastroBtn = ({ children, onClick, width, ...rest }: CadastroBtnProps) => (
+  <StyledButton onClick={onClick} width={width} {...rest}>
     {children}
   </StyledButton>
 );

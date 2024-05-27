@@ -25,7 +25,7 @@ const BarraPesquisa = ({ tema }: BarraPesquisaProps) => {
         </S.ConteinerB>
 
         <S.RecentSearches>
-          Buscas mais recentes:
+        {tema === "light" && <span>Buscas mais recentes:</span>}
           <S.Recdiv>Java</S.Recdiv>
           <S.Recdiv>PHP</S.Recdiv>
           <S.Recdiv>Phyton</S.Recdiv>

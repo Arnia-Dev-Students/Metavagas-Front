@@ -7,7 +7,10 @@ import { UserPlus } from "@styled-icons/boxicons-regular/UserPlus";
 export const Conteiner85 = styled.div`
   width: 85%;
   display: flex;
-`;
+  margin-bottom: 10px;
+  overflow: hidden; 
+  flex-direction: column
+  `;
 
 export const Whitspan = styled.span`
   color: white;
