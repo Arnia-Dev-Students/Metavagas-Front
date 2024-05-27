@@ -1,5 +1,5 @@
 import api from "../api";
-import { RegisterDTO, LoginDTO } from "./DTO";
+import { RegisterDTO, LoginDTO, MeDTO } from "./DTO";
 import { SUCCESSFUL_MESSAGE } from "../../utils/enums/successful-message";
 import { HttpStatusCode, isAxiosError } from "axios";
 import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
@@ -39,13 +39,13 @@ export const Login = async (params: LoginDTO.IParams) => {
       success: true,
       message: SUCCESSFUL_MESSAGE.LOGIN,
       code: "CODIGO",
-      token: response.data,
+      token: response.data.token,
     };
   } catch (error) {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
+        message: error.message,
         code: "CODIGO",
       };
     }
@@ -53,6 +53,34 @@ export const Login = async (params: LoginDTO.IParams) => {
       success: false,
       message: "MESSAGE",
       code: "CODIGO",
+    };
+  }
+};
+
+export const Me = async (params: MeDTO.IParams) => {
+  try {
+    const { token } = params;
+    const response = await api.get<MeDTO.IResponse>("/auth/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return {
+      success: true,
+      message: SUCCESSFUL_MESSAGE.ME_ROUTE,
+      user: response.data,
+    };
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return {
+        success: false,
+        message: error.message,
+        code: error.code,
+      };
+    }
+    return {
+      success: false,
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };

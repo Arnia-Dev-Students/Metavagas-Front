@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import CadastroBtn from "../buttonAm";
 import { EntrarBtn, Meta, NavStyle, Vagas } from "./style";
+import { User } from "../../models/user";
 
-const NavBar = () => {
+type Props = {
+  user: User | null
+}
+
+const NavBar: React.FC<Props> = ({ user }) => {
+  const navigate = useNavigate()
+  
   return (
     <NavStyle>
       <div>
@@ -9,8 +17,9 @@ const NavBar = () => {
         <Vagas>vagas</Vagas>
       </div>
       <div>
-        <EntrarBtn>Entrar</EntrarBtn>
+        <EntrarBtn onClick={() => navigate("/login")}>Entrar</EntrarBtn>
         <CadastroBtn onClick={() => {window.alert('botao funcionou')}}>Cadastre-se gratuitamente</CadastroBtn>
+        <div>{user?.name || ""}</div>
       </div>
     </NavStyle>
   );

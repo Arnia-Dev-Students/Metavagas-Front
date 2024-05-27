@@ -12,7 +12,6 @@ type User = {
   deletedAt: Date;
   createdAt: Date;
   updatedAt: Date;
-  photo_url: string;
 };
 
 type State = {
