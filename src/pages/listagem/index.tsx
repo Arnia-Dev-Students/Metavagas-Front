@@ -5,7 +5,7 @@ import CadastroBtn from "../../components/buttonAm";
 import { Conteiner85 } from "../home/style";
 import { ConteinerWhithe } from "../login/style";
 import * as S from "./style";
-import Vagas from "../../components/Vagas";
+//import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
   
