@@ -49,7 +49,7 @@ export namespace DeleteCompanyDTO {
 }
 
 export namespace GetCompaniesDTO {
-  export type IParams = {};
+  export type IParams = { token: string };
   export type IResponse = {
     company: Company & { vacancies: Vacancy[] };
   }[];

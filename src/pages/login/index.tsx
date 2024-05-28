@@ -5,7 +5,7 @@ import * as S from "./style";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Login, Me } from "../../services/auth";
-import { FORM_MESSAGE } from "../../enums/formMensage";
+import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { EmailOut, Userplus } from "../cadastro/style";
 import { useUserContext } from "../../hooks/user/use-user-context";
 

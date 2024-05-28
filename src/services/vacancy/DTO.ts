@@ -18,10 +18,20 @@ export namespace CreateVacancyDTO {
 }
 
 export namespace GetAllVacanciesDTO {
-  export type IParams = {};
+  export type IParams = { token: string };
   export type IResponse = {
-    vacancy: Vacancy & { company: Company, advertiser: User, technologies: Technology[] };
-  }[];
+    vacancies: {
+      vacancy: Vacancy & {
+        company: Company;
+        advertiser: User;
+        technologies: Technology[];
+      };
+    }[];
+    page: number;
+    limit: number;
+    totalPage: number;
+    totalCount: number;
+  };
 }
 
 export namespace GetVacancyDTO {
@@ -47,7 +57,6 @@ export namespace UpdateVacancyDTO {
   export type IResponse = Vacancy;
 }
 
-
 export namespace DeleteVacancyDTO {
   export type IParams = {
     id: string;
@@ -61,9 +70,10 @@ export namespace DeleteVacancyDTO {
 export namespace GetAllVacanciesPublicDTO {
   export type IParams = {};
   export type IResponse = {
-    vacancy: Vacancy & { company: Company, advertiser: User, technologies: Technology[] };
+    vacancy: Vacancy & {
+      company: Company;
+      advertiser: User;
+      technologies: Technology[];
+    };
   }[];
 }
-
-
-

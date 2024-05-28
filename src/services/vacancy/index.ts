@@ -1,5 +1,12 @@
 import api from "../api";
-import { CreateVacancyDTO, DeleteVacancyDTO, GetAllVacanciesDTO, GetAllVacanciesPublicDTO, GetVacancyDTO, UpdateVacancyDTO } from "./DTO";
+import {
+  CreateVacancyDTO,
+  DeleteVacancyDTO,
+  GetAllVacanciesDTO,
+  GetAllVacanciesPublicDTO,
+  GetVacancyDTO,
+  UpdateVacancyDTO,
+} from "./DTO";
 import { SUCCESSFUL_MESSAGE } from "../../utils/enums/successful-message";
 import { HttpStatusCode, isAxiosError } from "axios";
 import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
@@ -10,7 +17,7 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
     const response = await api.post<CreateVacancyDTO.IResponse>(
       "/vacancies",
       rest,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -22,41 +29,43 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
 
 export const GetVacancies = async (params: GetAllVacanciesDTO.IParams) => {
   try {
+    const { token } = params;
     const response = await api.get<GetAllVacanciesDTO.IResponse>("/vacancies", {
       params,
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     return {
       success: true,
       message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
-      vacancies: response.data,
+      vacanciesList: response.data,
     };
   } catch (error) {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
@@ -66,7 +75,7 @@ export const GetVacancy = async (params: GetVacancyDTO.IParams) => {
     const { id, token } = params;
     const response = await api.get<GetVacancyDTO.IResponse>(
       `/vacancies/${id}`,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -78,18 +87,17 @@ export const GetVacancy = async (params: GetVacancyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
-
 
 export const UpdateVacancy = async (params: UpdateVacancyDTO.IParams) => {
   try {
@@ -97,7 +105,7 @@ export const UpdateVacancy = async (params: UpdateVacancyDTO.IParams) => {
     const response = await api.patch<UpdateVacancyDTO.IResponse>(
       `/vacancies/${id}`,
       rest,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -109,25 +117,24 @@ export const UpdateVacancy = async (params: UpdateVacancyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
-
 
 export const DeleteVacancy = async (params: DeleteVacancyDTO.IParams) => {
   try {
     const { id, token } = params;
     const response = await api.delete<DeleteVacancyDTO.IResponse>(
       `/vacancies/${id}`,
-      { params, headers: { Authorization: token } }
+      { params, headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -139,25 +146,29 @@ export const DeleteVacancy = async (params: DeleteVacancyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
 
-
-export const getAllVacanciesPublic = async (params: GetAllVacanciesPublicDTO.IParams) => {
+export const getAllVacanciesPublic = async (
+  params: GetAllVacanciesPublicDTO.IParams
+) => {
   try {
-    const response = await api.get<GetAllVacanciesPublicDTO.IResponse>("/vacancies/public", {
-      params,
-    });
-
+    const response = await api.get<GetAllVacanciesPublicDTO.IResponse>(
+      "/vacancies/public",
+      {
+        params,
+      }
+    );
+    
     return {
       success: true,
       message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
@@ -167,18 +178,14 @@ export const getAllVacanciesPublic = async (params: GetAllVacanciesPublicDTO.IPa
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
-
-
-
-

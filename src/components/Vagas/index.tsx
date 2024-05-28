@@ -1,3 +1,6 @@
+import { Company } from "../../models/company";
+import { Technology } from "../../models/technology";
+import { User } from "../../models/user";
 import ButtonTec from "../buttonTecnologias";
 import * as S from "./style";
 
@@ -17,6 +20,7 @@ interface VagaProp {
 }
 
 const Vagas = (vaga: VagaProp) => {
+  console.log(vaga)
   return (
     <S.Cardvaga /*style={{ border: vaga.isRecent ? '1px #6950A1' : '1px #ECF1F4' }}*/
     >
