@@ -7,8 +7,15 @@ import { Link } from "react-router-dom";
 import { ConteinerWhithe, Loginh1, Plogin } from "../login/style";
 import * as S from "./style";
 import BarraPesquisa from "../../components/BarraDePesquisa";
+import { useGetVacancyPublic } from "../../hooks/vacancy/use-get-vacancy-public";
 
 const Home = () => {
+
+  const {vacancies} = useGetVacancyPublic()
+  
+
+  console.log(vacancies)
+
   return (
     <>
       <Conteiner>
@@ -38,27 +45,14 @@ const Home = () => {
               <S.Homeh2>Vagas mais recentes</S.Homeh2>
 
               <S.Griddiv>
-                
-                <VagaCard
-                  title="Desenvolvedor Frontend"
-                  location="São Paulo, SP"
-                  technology="React"
-                />
-                <VagaCard
-                  title="Desenvolvedor Backend"
-                  location="Rio de Janeiro, RJ"
-                  technology="Node.js"
-                />
-                <VagaCard
-                  title="Desenvolvedor Frontend"
-                  location="São Paulo, SP"
-                  technology="React"
-                />
-                <VagaCard
-                  title="Desenvolvedor Backend"
-                  location="Rio de Janeiro, RJ"
-                  technology="Node.js"
-                />
+                {vacancies?.map(({ vacancy }) => (
+                  <VagaCard
+                    key={vacancy.id}
+                    title={vacancy.vacancyRole}
+                    location={vacancy.location}
+                    technology={vacancy.technologies.map(tech => tech.tecName).join(", ")}
+                  />
+                ))}
               </S.Griddiv>
               <S.ConteinerBtn>
                 <CadastroBtn

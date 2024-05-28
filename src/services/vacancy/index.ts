@@ -1,5 +1,5 @@
 import api from "../api";
-import { CreateVacancyDTO, DeleteVacancyDTO, GetAllVacanciesDTO, GetVacancyDTO, UpdateVacancyDTO } from "./DTO";
+import { CreateVacancyDTO, DeleteVacancyDTO, GetAllVacanciesDTO, GetAllVacanciesPublicDTO, GetVacancyDTO, UpdateVacancyDTO } from "./DTO";
 import { SUCCESSFUL_MESSAGE } from "../../utils/enums/successful-message";
 import { HttpStatusCode, isAxiosError } from "axios";
 import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
@@ -134,6 +134,34 @@ export const DeleteVacancy = async (params: DeleteVacancyDTO.IParams) => {
       success: true,
       message: SUCCESSFUL_MESSAGE.DELETE_VACANCY,
       vacancy: response.data,
+    };
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return {
+        success: false,
+        message: "MESSAGE",
+        code: "CODIGO",
+      };
+    }
+    return {
+      success: false,
+      message: "MESSAGE",
+      code: "CODIGO",
+    };
+  }
+};
+
+
+export const getAllVacanciesPublic = async (params: GetAllVacanciesPublicDTO.IParams) => {
+  try {
+    const response = await api.get<GetAllVacanciesPublicDTO.IResponse>("/vacancies/public", {
+      params,
+    });
+
+    return {
+      success: true,
+      message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
+      vacancies: response.data,
     };
   } catch (error) {
     if (isAxiosError(error)) {
