@@ -53,7 +53,7 @@ Para executar o projeto localmente, siga estas etapas:
 
 Clone o repositório para o seu ambiente local.
 ```bash
-git clone https://github.com/Arnia-Dev-Students/Metavagas-API.git
+git clone https://github.com/Arnia-Dev-Students/Metavagas-Front.git
 ```
 Instale as dependências utilizando o comando npm install.
 ```bash
