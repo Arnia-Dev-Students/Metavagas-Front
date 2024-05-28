@@ -45,12 +45,12 @@ const Home = () => {
               <S.Homeh2>Vagas mais recentes</S.Homeh2>
 
               <S.Griddiv>
-                {vacancies?.map(({ vacancy }) => (
+                {vacancies?.map(({ vacancy }, index) => (
                   <VagaCard
-                    key={vacancy.id}
-                    title={vacancy.vacancyRole}
-                    location={vacancy.location}
-                    technology={vacancy.technologies.map(tech => tech.tecName).join(", ")}
+                    key={index}
+                    title={vacancy?.vacancyRole}
+                    location={vacancy?.location}
+                    technology={vacancy?.technologies.map(tech => tech.tecName).join(", ")}
                   />
                 ))}
               </S.Griddiv>

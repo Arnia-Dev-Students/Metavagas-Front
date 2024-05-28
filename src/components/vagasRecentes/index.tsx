@@ -1,9 +1,9 @@
 import * as S from "./style";
 
 interface VagaCardProps {
-    title: string;
-    location: string;
-    technology: string;
+    title: string | undefined;
+    location: string | undefined;
+    technology: string | undefined;
     
   }
   
