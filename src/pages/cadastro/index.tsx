@@ -5,7 +5,7 @@ import { ConteinerCadastro, EmailOut } from "./style";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FORM_MESSAGE } from "../../enums/formMensage";
+import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { Register } from "../../services/auth";
 import { Userplus } from "./style";
 
