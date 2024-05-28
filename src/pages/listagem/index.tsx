@@ -191,11 +191,11 @@ const PagListagem = () => {
                   <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
                   <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
                 </S.Graficodiv>
-                <div>
+                {/* <div>
                   <Vagas />
                   <Vagas />
                   <Vagas />
-                </div>
+                </div> */}
               </S.Listagemdiv2>
             </S.DivLayout>
           </Conteiner85>

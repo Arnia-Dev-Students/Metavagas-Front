@@ -33,8 +33,8 @@ export const GetCompany = async (params: GetCompanyDTO.IParams) => {
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };

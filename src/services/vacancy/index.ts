@@ -28,8 +28,8 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };

@@ -6,7 +6,7 @@ import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
 
 export const Register = async (params: RegisterDTO.IParams) => {
   try {
-    const response = await api.post<RegisterDTO.IResponse>(
+    await api.post<RegisterDTO.IResponse>(
       "/auth/register",
       params
     );
