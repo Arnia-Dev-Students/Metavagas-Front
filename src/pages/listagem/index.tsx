@@ -5,9 +5,16 @@ import CadastroBtn from "../../components/buttonAm";
 import { Conteiner85 } from "../home/style";
 import { ConteinerWhithe } from "../login/style";
 import * as S from "./style";
+import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
+import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
 //import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
+  const { vacanciesList } = useVacancyList()
+  const { technologies } = useGetTechnologies()
+
+  console.log("Vacancies: ", vacanciesList)
+  console.log("Technologies", technologies)
   
   const [values, setValues] = useState([0, 80000]);
 

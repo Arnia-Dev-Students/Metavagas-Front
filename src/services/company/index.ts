@@ -15,7 +15,7 @@ export const GetCompany = async (params: GetCompanyDTO.IParams) => {
     const { id, token } = params;
     const response = await api.get<GetCompanyDTO.IResponse>(
       `/companies/${id}`,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -27,8 +27,8 @@ export const GetCompany = async (params: GetCompanyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
@@ -41,8 +41,9 @@ export const GetCompany = async (params: GetCompanyDTO.IParams) => {
 
 export const GetCompanies = async (params: GetCompaniesDTO.IParams) => {
   try {
+    const { token } = params;
     const response = await api.get<GetCompaniesDTO.IResponse>("/companies", {
-      params,
+      headers: { Authorization: `Bearer ${token}` },
     });
 
     return {
@@ -54,14 +55,14 @@ export const GetCompanies = async (params: GetCompaniesDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
@@ -72,7 +73,7 @@ export const CreateCompany = async (params: CreateCompanyDTO.IParams) => {
     const response = await api.post<CreateCompanyDTO.IResponse>(
       "/companies",
       rest,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -84,14 +85,14 @@ export const CreateCompany = async (params: CreateCompanyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
@@ -102,7 +103,7 @@ export const UpdateCompany = async (params: UpdateCompanyDTO.IParams) => {
     const response = await api.patch<UpdateCompanyDTO.IResponse>(
       `/companies/${id}`,
       rest,
-      { headers: { Authorization: token } }
+      { headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -114,14 +115,14 @@ export const UpdateCompany = async (params: UpdateCompanyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
@@ -131,7 +132,7 @@ export const DeleteCompany = async (params: DeleteCompanyDTO.IParams) => {
     const { id, token } = params;
     const response = await api.delete<DeleteCompanyDTO.IResponse>(
       `/companies/${id}`,
-      { params, headers: { Authorization: token } }
+      { params, headers: { Authorization: `Bearer ${token}` } }
     );
 
     return {
@@ -143,14 +144,14 @@ export const DeleteCompany = async (params: DeleteCompanyDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
