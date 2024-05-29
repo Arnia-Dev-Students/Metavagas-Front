@@ -3,7 +3,6 @@ import { Conteiner } from "../../components/baselayot/style";
 import CadastroBtn from "../../components/buttonAm";
 import VagaCard from "../../components/vagasRecentes";
 import { Link } from "react-router-dom";
-
 import { ConteinerWhithe, Loginh1, Plogin } from "../login/style";
 import * as S from "./style";
 import BarraPesquisa from "../../components/BarraDePesquisa";
