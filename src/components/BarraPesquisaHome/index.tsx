@@ -1,24 +1,17 @@
-import React, { useContext } from "react";
-import { SearchContext } from "../../context/pesquisa";
-
 import * as S from "./style";
+import { useSearchContext } from "../../hooks/user/use-search-context";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecentSearches } from "../../hooks/user/use-recent-searches";
 
 interface BarraPesquisaHomeProps {
   tema: "light" | "dark";
 }
 
 const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
-  
-  const searchContext = useContext(SearchContext);
+  const { searchTerm, setSearchTerm, searchLocation, setSearchLocation } = useSearchContext()
+  const { recentSearches, saveSearch } = useRecentSearches();
   const navigate = useNavigate();
-
-  if (!searchContext) {
-    return null;
-  }
-
-  const { searchTerm, setSearchTerm, searchLocation, setSearchLocation } =
-    searchContext;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -29,6 +22,7 @@ const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
   };
 
   const handleSubmit = () => {
+    saveSearch(searchTerm as string);
     navigate("/listagem");
   };
 
@@ -40,7 +34,7 @@ const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
           <S.InputStyle
             type="text"
             placeholder="Cargo, tecnologia ou palavra-chave"
-            value={searchTerm}
+            value={searchTerm || ""}
             onChange={handleSearchChange}
           />
           <S.Glass />
@@ -51,7 +45,7 @@ const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
           <S.InputStyle
             type="text"
             placeholder="Localização"
-            value={searchLocation}
+            value={searchLocation || ""}
             onChange={handleLocationChange}
           />
           <S.LocalNv />
@@ -62,10 +56,9 @@ const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
 
       <S.RecentSearches>
         {tema === "light" && <span>Buscas mais recentes:</span>}
-        <S.Recdiv>Java</S.Recdiv>
-        <S.Recdiv>PHP</S.Recdiv>
-        <S.Recdiv>Phyton</S.Recdiv>
-        <S.Recdiv>React</S.Recdiv>
+        {recentSearches.map((search, index) => (
+          <S.Recdiv key={index} onClick={() => setSearchTerm(search)}>{search}</S.Recdiv>
+        ))}
       </S.RecentSearches>
     </S.ConteinerP>
   );

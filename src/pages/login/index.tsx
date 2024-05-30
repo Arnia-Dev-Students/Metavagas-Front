@@ -8,6 +8,7 @@ import { Login, Me } from "../../services/auth";
 import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { EmailOut, Userplus } from "../cadastro/style";
 import { useUserContext } from "../../hooks/user/use-user-context";
+import * as CONSTANTS from "../../utils/constants/constants"
 
 export const LoginPag = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const LoginPag = () => {
       return
     }
 
-    localStorage.setItem("metavagas-token", token);
+    localStorage.setItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY, token);
 
     const { user } = await Me({ token });
 
