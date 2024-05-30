@@ -10,15 +10,14 @@ import { useGetTechnologies } from "../../hooks/technology/use-get-technologies"
 import Vagas from "../../components/Vagas";
 import { useSearchContext } from "../../hooks/user/use-search-context";
 import { useUserContext } from "../../hooks/user/use-user-context";
+import { useNavigate } from "react-router-dom";
 
 const PagListagem = () => {
-  const { searchTerm, searchLocation } = useSearchContext();
-  
-  //const searchContext = useContext(SearchContext);
-  //const { searchTerm, searchLocation } = searchContext;
-  const { user } = useUserContext()
- 
+  const navigate = useNavigate();
 
+  const { searchTerm, searchLocation } = useSearchContext();
+
+  const { user } = useUserContext();
 
   const { technologies } = useGetTechnologies();
 
@@ -226,16 +225,37 @@ const PagListagem = () => {
 
               <S.Listagemdiv2>
                 <S.Graficodiv>
-                  <div>
-                      {user && <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" /> }
-                  </div>
-                  <div>
-                    {user && <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" /> }
-                  </div>
-          
-                  
-                  
+                  <S.Imgdiv>
+                    <S.Styleimg style={user ? {} : { filter: 'blur(10px)' }} src="/src/assets/imgs/Frame 47.png" alt="" />
+
+                    {!user && (
+                      <S.Btdiv>
+                        <CadastroBtn
+                          children={"Cadastre-se para visualizar"}
+                          onClick={() => {
+                            navigate("/cadastro");
+                          }}
+                        />
+                      </S.Btdiv>
+                    )}
+                  </S.Imgdiv>
+
+                  <S.Imgdiv>
+                    <S.Styleimg style={user ? {} : { filter: 'blur(10px)' }} src="/src/assets/imgs/Frame 48.png" alt="" />
+
+                    {!user && (
+                      <S.Btdiv>
+                        <CadastroBtn
+                          children={"Cadastre-se para visualizar"}
+                          onClick={() => {
+                            navigate("/cadastro");
+                          }}
+                        />
+                      </S.Btdiv>
+                    )}
+                  </S.Imgdiv>
                 </S.Graficodiv>
+
                 <div>
                   {vacanciesList?.vacancies.map((vacancy, index) => (
                     <Vagas

@@ -4,6 +4,7 @@ import { Technology } from "../../models/technology";
 import { User } from "../../models/user";
 import ButtonTec from "../buttonTecnologias";
 import * as S from "./style";
+import { useUserContext } from "../../hooks/user/use-user-context";
 
 interface VagaProp {
   id: number;
@@ -22,6 +23,9 @@ interface VagaProp {
 }
 
 const Vagas = (vaga: VagaProp) => {
+
+  const { user } = useUserContext()
+
   return (
     <S.Cardvaga
       style={{
@@ -35,22 +39,22 @@ const Vagas = (vaga: VagaProp) => {
         </S.Datediv>
       </S.Superiordiv>
       <S.TitleVaga>{vaga.vacancyRole}</S.TitleVaga>
-      <S.Subspan>Empresa: {vaga.company.name}</S.Subspan>
+      <S.Subspan style={!user ? { filter: 'blur(5px)' } : {}} >Empresa: {vaga.company.name}</S.Subspan>
       <S.Buttondiv>
         {vaga.technologies.map((technology, index) => (
           <ButtonTec key={index} tec={technology.tecName} />
         ))}
       </S.Buttondiv>
       <S.Detailsdiv>
-        <S.Detailspan>
+        <S.Detailspan style={!user ? { filter: 'blur(5px)' } : {}}>
           <S.Dollar />
           Faixa salarial: <b>R$ {vaga.wage}</b>
         </S.Detailspan>
-        <S.Detailspan>
+        <S.Detailspan style={!user ? { filter: 'blur(5px)' } : {}}>
           <S.Local />
           Localização: <b>{vaga.location}</b>
         </S.Detailspan>
-        <S.Detailspan>
+        <S.Detailspan style={!user ? { filter: 'blur(5px)' } : {}}>
           <S.Monitor1 />
           Tipo de vaga: <b>{vaga.vacancyType}</b>
         </S.Detailspan>
