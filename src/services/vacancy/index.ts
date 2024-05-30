@@ -43,12 +43,11 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
 
 export const GetVacancies = async (params: GetAllVacanciesDTO.IParams) => {
   try {
-    const { token } = params;
     const response = await api.get<GetAllVacanciesDTO.IResponse>("/vacancies", {
       params,
-      headers: { Authorization: `Bearer ${token}` },
     });
 
+    console.log(response)
     return {
       success: true,
       message: SUCCESSFUL_MESSAGE.GET_VACANCIES,

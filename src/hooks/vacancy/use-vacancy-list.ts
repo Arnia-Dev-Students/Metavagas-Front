@@ -4,16 +4,15 @@ import { Technology } from "../../models/technology";
 import { User } from "../../models/user";
 import { Vacancy } from "../../models/vacancy";
 import { GetVacancies } from "../../services/vacancy";
-import { useUserContext } from "../user/use-user-context";
+
+type VacancyData = Vacancy & {
+  company: Company;
+  advertiser: User;
+  technologies: Technology[];
+};
 
 type VacanciesList = {
-  vacancies: {
-    vacancy: Vacancy & {
-      company: Company;
-      advertiser: User;
-      technologies: Technology[];
-    };
-  }[];
+  vacancies: VacancyData[];
   page: number;
   limit: number;
   totalPage: number;
@@ -21,7 +20,7 @@ type VacanciesList = {
 };
 
 type State = {
-  vacanciesList: undefined | VacanciesList
+  vacanciesList: undefined | VacanciesList;
 };
 
 const INITIAL_STATE = {
@@ -29,14 +28,10 @@ const INITIAL_STATE = {
 };
 
 export const useVacancyList = () => {
-  const { token } = useUserContext();
   const [state, setState] = useState<State>(INITIAL_STATE);
 
   const fetchVacancies = async () => {
-    if (!token) {
-      return;
-    }
-    const { vacanciesList } = await GetVacancies({ token });
+    const { vacanciesList } = await GetVacancies({});
 
     if (!vacanciesList) {
       return "error";
@@ -47,7 +42,7 @@ export const useVacancyList = () => {
 
   useEffect(() => {
     fetchVacancies();
-  }, [token]);
+  }, []);
 
   return {
     vacanciesList: state.vacanciesList,

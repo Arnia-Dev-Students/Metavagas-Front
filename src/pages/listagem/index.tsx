@@ -7,7 +7,7 @@ import { ConteinerWhithe } from "../login/style";
 import * as S from "./style";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
-//import Vagas from "../../components/Vagas";
+import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
   const { vacanciesList } = useVacancyList()
@@ -36,7 +36,7 @@ const PagListagem = () => {
               <S.ListH2>
                 Vagas em <b>React</b>
               </S.ListH2>
-              <S.SubH2>225 vagas encontradas</S.SubH2>
+              <S.SubH2>{vacanciesList?.totalCount} vagas encontradas</S.SubH2>
             </S.Titlediv>
 
             <S.DivLayout>
@@ -198,11 +198,11 @@ const PagListagem = () => {
                   <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
                   <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
                 </S.Graficodiv>
-                {/* <div>
-                  <Vagas />
-                  <Vagas />
-                  <Vagas />
-                </div> */}
+                <div>
+                  {vacanciesList?.vacancies.map((vacancy, index) => (
+                    <Vagas index={index} key={index} id={vacancy.id} vacancyRole={vacancy.vacancyRole} wage={vacancy.wage} location={vacancy.location} vacancyType={vacancy.vacancyType} vacancyDescription={vacancy.vacancyDescription} level={vacancy.level} createdAt={vacancy.createdAt} updatedAt={vacancy.updatedAt} advertiser={vacancy.advertiser} company={vacancy.company} technologies={vacancy.technologies} />
+                  ))}
+                </div>
               </S.Listagemdiv2>
             </S.DivLayout>
           </Conteiner85>
