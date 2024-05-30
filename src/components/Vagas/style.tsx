@@ -1,4 +1,25 @@
 import { styled } from "styled-components";
+import { CurrencyDollar } from "@styled-icons/heroicons-outline/CurrencyDollar";
+import { Monitor } from "@styled-icons/foundation/Monitor";
+import { Location } from "@styled-icons/ionicons-outline/Location";
+
+export const Dollar = styled(CurrencyDollar)`
+  color: ${(props) => props.theme.colors.amarelo};
+  width: 20px;
+  margin-right: 8px;
+`;
+
+export const Monitor1 = styled(Monitor)`
+  color: ${(props) => props.theme.colors.amarelo};
+  width: 20px;
+  margin-right: 8px;
+`;
+
+export const Local = styled(Location)`
+  color: ${(props) => props.theme.colors.amarelo};
+  width: 20px;
+  margin-right: 8px;
+`;
 
 export const TitleVaga = styled.p`
   font-size: 18px;

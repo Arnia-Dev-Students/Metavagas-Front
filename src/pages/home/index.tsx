@@ -2,12 +2,16 @@ import LinksRapidos from "../../components/LinksPesquisaRapida";
 import { Conteiner } from "../../components/baselayot/style";
 import CadastroBtn from "../../components/buttonAm";
 import VagaCard from "../../components/vagasRecentes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ConteinerWhithe, Loginh1, Plogin } from "../login/style";
 import * as S from "./style";
 import BarraPesquisa from "../../components/BarraDePesquisa";
+import { useUserContext } from "../../hooks/user/use-user-context";
 
 const Home = () => {
+  const navigate = useNavigate()
+  const { user } = useUserContext()
+ 
   return (
     <>
       <Conteiner>
@@ -60,10 +64,10 @@ const Home = () => {
                 />
               </S.Griddiv>
               <S.ConteinerBtn>
-                <CadastroBtn
+                {!user && <CadastroBtn
                   children={"Cadastre-se para ver mais vagas"}
-                  onClick={() => {}}
-                />
+                  onClick={() => navigate('cadastro')}
+                />}
               </S.ConteinerBtn>
             </S.Bodydiv>
           </S.Conteiner85>
@@ -89,11 +93,11 @@ const Home = () => {
                 </S.Filtrodiv>
               </S.Flexdiv2>
             </S.Wh100div>
-            <S.CardCadastre>
-              <S.UserPl />
+            { !user && <S.CardCadastre>
+               <S.UserPl />
               Faça seu <Link to={"cadastro"}>cadastro gratuito</Link> e encontre
               vagas de acordo com o seu perfil.
-            </S.CardCadastre>
+            </S.CardCadastre> }
           </S.Flexdiv>
         </S.Conteiner85>
       </Conteiner>

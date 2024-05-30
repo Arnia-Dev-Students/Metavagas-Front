@@ -41,13 +41,13 @@ const Vagas = (vaga: VagaProp) => {
       </S.Buttondiv>
       <S.Detailsdiv>
         <S.Detailspan>
-          Faixa salarial: <b>R$ 4.000,00</b>
+          <S.Dollar /> Faixa salarial: <b>R$ 4.000,00</b>
         </S.Detailspan>
         <S.Detailspan>
-          Localização: <b>Belo Horizonte</b>
+          <S.Local/> Localização: <b>Belo Horizonte</b>
         </S.Detailspan>
         <S.Detailspan>
-          Tipo de vaga: <b>Home officeHome office</b>
+          <S.Monitor1 />Tipo de vaga: <b>Home officeHome office</b>
         </S.Detailspan>
       </S.Detailsdiv>
       <S.Description>

@@ -72,7 +72,7 @@ export const LogOut = styled.button`
   cursor: pointer;
   position: absolute;
   margin-top: 50px;
-  margin-left: 100px;
-  display: none;
+  margin-left: 120px;
+  
 `;
 

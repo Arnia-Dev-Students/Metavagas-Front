@@ -7,6 +7,7 @@ import { ConteinerWhithe } from "../login/style";
 import * as S from "./style";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
+import Vagas from "../../components/Vagas";
 //import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
@@ -198,11 +199,11 @@ const PagListagem = () => {
                   <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
                   <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
                 </S.Graficodiv>
-                {/* <div>
+                 <div>
                   <Vagas />
                   <Vagas />
                   <Vagas />
-                </div> */}
+                </div> 
               </S.Listagemdiv2>
             </S.DivLayout>
           </Conteiner85>

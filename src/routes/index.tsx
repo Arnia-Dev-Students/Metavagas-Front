@@ -20,7 +20,7 @@ const Router: React.FC = () => {
               <Route path="" element={<Cadastro />} />
             </Route>
 
-            <Route path="" element={<PagListagem />} />
+            <Route path="/listagem" element={<PagListagem />} />
           </Route>
         </Routes>
       </BrowserRouter>
