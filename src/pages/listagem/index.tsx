@@ -10,6 +10,12 @@ import { useGetTechnologies } from "../../hooks/technology/use-get-technologies"
 import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
+  
+  //const searchContext = useContext(SearchContext);
+  //const { searchTerm, searchLocation } = searchContext;
+
+
+
   const { technologies } = useGetTechnologies();
 
   const [vacancyRole, setVacancyRole] = useState("");

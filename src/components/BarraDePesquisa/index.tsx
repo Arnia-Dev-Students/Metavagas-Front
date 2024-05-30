@@ -1,5 +1,6 @@
-import { ChangeEvent, Dispatch } from "react";
+import { ChangeEvent, Dispatch, useContext } from "react";
 import * as S from "./style";
+import { SearchContext } from "../../context/pesquisa";
 
 interface BarraPesquisaProps {
   tema: "light" | "dark";
@@ -20,6 +21,13 @@ const BarraPesquisa = ({
   handleSearchChange,
   handleFilter,
 }: BarraPesquisaProps) => {
+  const searchContext = useContext(SearchContext);
+
+  if (!searchContext) {
+    return null;
+  }
+  const { searchTerm, searchLocation } = searchContext;
+
   return (
     <>
       <S.ConteinerP theme={tema}>
@@ -27,6 +35,7 @@ const BarraPesquisa = ({
           <S.Inputdiv>
             <S.LabelStyle htmlFor="">O que você procura?</S.LabelStyle>
             <S.InputStyle
+              
               type="text"
               placeholder="Cargo, tecnologia ou palava-chave"
               onChange={handleSearchChange(setVacancyRole)}
@@ -37,6 +46,7 @@ const BarraPesquisa = ({
           <S.Inputdiv>
             <S.LabelStyle htmlFor="">Onde?</S.LabelStyle>
             <S.InputStyle
+              
               type="text"
               placeholder="Localização"
               onChange={handleSearchChange(setLocation)}

@@ -5,8 +5,8 @@ import VagaCard from "../../components/vagasRecentes";
 import { Link, useNavigate } from "react-router-dom";
 import { ConteinerWhithe, Loginh1, Plogin } from "../login/style";
 import * as S from "./style";
-import BarraPesquisa from "../../components/BarraDePesquisa";
 import { useUserContext } from "../../hooks/user/use-user-context";
+import BarraPesquisaHome from "../../components/BarraPesquisaHome";
 
 const Home = () => {
   const navigate = useNavigate()
@@ -35,7 +35,7 @@ const Home = () => {
       <ConteinerWhithe>
         <Conteiner>
           <S.Conteiner85>           
-          <BarraPesquisa tema={"light"} />
+          <BarraPesquisaHome tema={"light"} />
             <S.Bodydiv>
             
               <S.Homeh2>Vagas mais recentes</S.Homeh2>

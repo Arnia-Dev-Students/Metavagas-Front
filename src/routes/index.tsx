@@ -6,9 +6,11 @@ import Home from "../pages/home";
 import PagListagem from "../pages/listagem";
 import { UserContextProvider } from "../context/user";
 import PublicRoute from "../components/rotasPublic";
+import  { SearchProvider }  from "../context/pesquisa";
 const Router: React.FC = () => {
   return (
     <UserContextProvider>
+      <SearchProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<Baselayout />}>
@@ -24,6 +26,8 @@ const Router: React.FC = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      </SearchProvider>
+      
     </UserContextProvider>
   );
 };

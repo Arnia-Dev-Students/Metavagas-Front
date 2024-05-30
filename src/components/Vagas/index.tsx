@@ -18,17 +18,18 @@ interface VagaProp {
   advertiser: User;
   company: Company;
   technologies: Technology[];
-  index: number
+  index: number;
 }
 
 const Vagas = (vaga: VagaProp) => {
   return (
-    <S.Cardvaga /*style={{ border: vaga.isRecent ? '1px #6950A1' : '1px #ECF1F4' }}*/
+    <S.Cardvaga
+      style={{
+        border: vaga.index === 0 ? "1px solid #6950A1" : "1px solid #ECF1F4",
+      }}
     >
       <S.Superiordiv>
-        <div>
-          {vaga.index === 0 && <S.NovaBtn>Nova</S.NovaBtn>}{" "}
-        </div>
+        <div>{vaga.index === 0 && <S.NovaBtn>Nova</S.NovaBtn>} </div>
         <S.Datediv>
           <S.Bold></S.Bold>• {formatDistanceToNow(vaga.createdAt)}
         </S.Datediv>
@@ -42,18 +43,19 @@ const Vagas = (vaga: VagaProp) => {
       </S.Buttondiv>
       <S.Detailsdiv>
         <S.Detailspan>
+          <S.Dollar />
           Faixa salarial: <b>R$ {vaga.wage}</b>
         </S.Detailspan>
         <S.Detailspan>
+          <S.Local />
           Localização: <b>{vaga.location}</b>
         </S.Detailspan>
         <S.Detailspan>
+          <S.Monitor1 />
           Tipo de vaga: <b>{vaga.vacancyType}</b>
         </S.Detailspan>
       </S.Detailsdiv>
-      <S.Description>
-        {vaga.vacancyDescription}
-      </S.Description>
+      <S.Description>{vaga.vacancyDescription}</S.Description>
     </S.Cardvaga>
   );
 };
