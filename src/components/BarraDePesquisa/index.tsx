@@ -8,25 +8,24 @@ interface BarraPesquisaProps {
   setVacancyRole: Dispatch<React.SetStateAction<string>>;
   location: string;
   setLocation: Dispatch<React.SetStateAction<string>>;
-  handleSearchChange: (
-    setter: React.Dispatch<React.SetStateAction<string>>
-  ) => (event: ChangeEvent<HTMLInputElement>) => void;
   handleFilter: () => void;
 }
 
 const BarraPesquisa = ({
   tema,
+  vacancyRole,
+  location,
   setVacancyRole,
   setLocation,
-  handleSearchChange,
   handleFilter,
 }: BarraPesquisaProps) => {
-  const searchContext = useContext(SearchContext);
+  const handleVacancyRoleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setVacancyRole(event.target.value);
+  };
 
-  if (!searchContext) {
-    return null;
-  }
-  const { searchTerm, searchLocation } = searchContext;
+  const handleLocationChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setLocation(event.target.value);
+  };
 
   return (
     <>
@@ -35,10 +34,10 @@ const BarraPesquisa = ({
           <S.Inputdiv>
             <S.LabelStyle htmlFor="">O que você procura?</S.LabelStyle>
             <S.InputStyle
-              
+              value={vacancyRole}
               type="text"
               placeholder="Cargo, tecnologia ou palava-chave"
-              onChange={handleSearchChange(setVacancyRole)}
+              onChange={handleVacancyRoleChange}
             />
             <S.Glass />
           </S.Inputdiv>
@@ -46,10 +45,10 @@ const BarraPesquisa = ({
           <S.Inputdiv>
             <S.LabelStyle htmlFor="">Onde?</S.LabelStyle>
             <S.InputStyle
-              
+              value={location}
               type="text"
               placeholder="Localização"
-              onChange={handleSearchChange(setLocation)}
+              onChange={handleLocationChange}
             />
             <S.LocalNv />
           </S.Inputdiv>

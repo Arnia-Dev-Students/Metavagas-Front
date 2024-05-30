@@ -29,7 +29,7 @@ const INITIAL_STATE = {
   fetchVacancies: () => {},
 };
 
-type Props = {
+type AxiosProps = {
   vacancyRole?: string;
   technologyIds?: number[];
   vacancyTypes?: string[];
@@ -38,10 +38,15 @@ type Props = {
   location?: string;
 };
 
-export const useVacancyList = () => {
+type Props = {
+  vacancyRole?: string;
+  location?: string;
+};
+
+export const useVacancyList = ({ location, vacancyRole}: Props) => {
   const [state, setState] = useState<State>(INITIAL_STATE);
 
-  const fetchVacancies = async (props: Props) => {
+  const fetchVacancies = async (props: AxiosProps) => {
     const { vacanciesList } = await GetVacancies(props);
 
     if (!vacanciesList) {
@@ -55,7 +60,7 @@ export const useVacancyList = () => {
   };
 
   useEffect(() => {
-    fetchVacancies({});
+    fetchVacancies({location, vacancyRole});
   }, []);
 
   return {

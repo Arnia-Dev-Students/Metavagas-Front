@@ -8,9 +8,11 @@ import * as S from "./style";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
 import Vagas from "../../components/Vagas";
+import { useSearchContext } from "../../hooks/user/use-search-context";
 import { useUserContext } from "../../hooks/user/use-user-context";
 
 const PagListagem = () => {
+  const { searchTerm, searchLocation } = useSearchContext();
   
   //const searchContext = useContext(SearchContext);
   //const { searchTerm, searchLocation } = searchContext;
@@ -20,26 +22,23 @@ const PagListagem = () => {
 
   const { technologies } = useGetTechnologies();
 
-  const [vacancyRole, setVacancyRole] = useState("");
+  const [vacancyRole, setVacancyRole] = useState(searchTerm || "");
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
     []
   );
   const [vacancyTypes, setVacancyTypes] = useState<string[]>([]);
   const [salaryRange, setSalaryRange] = useState([0, 80000]);
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(searchLocation || "");
 
-  const { vacanciesList, fetchVacancies } = useVacancyList();
+  //BUSCANDO COM VALORES INICIAIS DO CONTEXTO
+  const { vacanciesList, fetchVacancies } = useVacancyList({
+    vacancyRole: searchTerm || undefined,
+    location: searchLocation || undefined,
+  });
 
   const handleSliderChange = (newValues: number | readonly number[]) => {
     setSalaryRange(newValues as number[]);
   };
-
-  const handleSearchChange =
-    (setter: React.Dispatch<React.SetStateAction<string>>) =>
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { value } = event.target;
-      setter(value);
-    };
 
   const handleFilterChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
@@ -66,7 +65,6 @@ const PagListagem = () => {
       <Conteiner>
         <Conteiner85>
           <BarraPesquisa
-            handleSearchChange={handleSearchChange}
             vacancyRole={vacancyRole}
             setVacancyRole={setVacancyRole}
             location={location}
