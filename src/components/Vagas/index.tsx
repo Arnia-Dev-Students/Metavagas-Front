@@ -18,15 +18,16 @@ interface VagaProp {
   advertiser: User;
   company: Company;
   technologies: Technology[];
+  index: number
 }
 
-const Vagas = (vaga: VagaProp, index: number) => {
+const Vagas = (vaga: VagaProp) => {
   return (
     <S.Cardvaga /*style={{ border: vaga.isRecent ? '1px #6950A1' : '1px #ECF1F4' }}*/
     >
       <S.Superiordiv>
         <div>
-          {index === 0 && <S.NovaBtn>Nova</S.NovaBtn>}{" "}
+          {vaga.index === 0 && <S.NovaBtn>Nova</S.NovaBtn>}{" "}
         </div>
         <S.Datediv>
           <S.Bold></S.Bold>• {formatDistanceToNow(vaga.createdAt)}

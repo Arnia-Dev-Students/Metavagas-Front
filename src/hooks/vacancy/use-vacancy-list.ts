@@ -21,30 +21,45 @@ type VacanciesList = {
 
 type State = {
   vacanciesList: undefined | VacanciesList;
+  fetchVacancies: () => void;
 };
 
 const INITIAL_STATE = {
   vacanciesList: undefined,
+  fetchVacancies: () => {},
+};
+
+type Props = {
+  vacancyRole?: string;
+  technologyIds?: number[];
+  vacancyTypes?: string[];
+  wageMin?: number;
+  wageMax?: number;
+  location?: string;
 };
 
 export const useVacancyList = () => {
   const [state, setState] = useState<State>(INITIAL_STATE);
 
-  const fetchVacancies = async () => {
-    const { vacanciesList } = await GetVacancies({});
+  const fetchVacancies = async (props: Props) => {
+    const { vacanciesList } = await GetVacancies(props);
 
     if (!vacanciesList) {
       return "error";
     }
 
-    setState({ vacanciesList });
+    setState((prevState) => ({
+      ...prevState,
+      vacanciesList: vacanciesList,
+    }));
   };
 
   useEffect(() => {
-    fetchVacancies();
+    fetchVacancies({});
   }, []);
 
   return {
     vacanciesList: state.vacanciesList,
+    fetchVacancies: fetchVacancies,
   };
 };

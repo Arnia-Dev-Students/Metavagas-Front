@@ -10,6 +10,7 @@ import {
 import { SUCCESSFUL_MESSAGE } from "../../utils/enums/successful-message";
 import { HttpStatusCode, isAxiosError } from "axios";
 import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
+import { buildQueryString } from '../../utils/helpers/query-builder';
 
 export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
   try {
@@ -43,11 +44,13 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
 
 export const GetVacancies = async (params: GetAllVacanciesDTO.IParams) => {
   try {
-    const response = await api.get<GetAllVacanciesDTO.IResponse>("/vacancies", {
-      params,
-    });
 
-    console.log(response)
+    const queryString = buildQueryString(params)
+
+    console.log(queryString)
+    const response = await api.get<GetAllVacanciesDTO.IResponse>("/vacancies?" + queryString, {
+    })
+  
     return {
       success: true,
       message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
