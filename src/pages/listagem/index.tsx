@@ -9,24 +9,16 @@ import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
 import Vagas from "../../components/Vagas";
 
-type AppliedFilters = {
-  vacancyRole?: string;
-  technologyIds?: number[];
-  vacancyTypes?: string[];
-  wageMin?: number;
-  wageMax?: number;
-  location?: string;
-};
-
 const PagListagem = () => {
   const { technologies } = useGetTechnologies();
 
   const [vacancyRole, setVacancyRole] = useState("");
-  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    []
+  );
   const [vacancyTypes, setVacancyTypes] = useState<string[]>([]);
   const [salaryRange, setSalaryRange] = useState([0, 80000]);
   const [location, setLocation] = useState("");
-
 
   const { vacanciesList, fetchVacancies } = useVacancyList();
 
@@ -34,10 +26,12 @@ const PagListagem = () => {
     setSalaryRange(newValues as number[]);
   };
 
-  const handleSearchChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setter(value);
-  };
+  const handleSearchChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setter(value);
+    };
 
   const handleFilterChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
@@ -48,20 +42,16 @@ const PagListagem = () => {
       );
     };
 
-
   const handleFilter = () => {
-
-      fetchVacancies({
-        vacancyRole: vacancyRole,
+    fetchVacancies({
+      vacancyRole: vacancyRole,
       technologyIds: selectedTechnologies.map(Number),
       vacancyTypes: vacancyTypes,
       wageMin: salaryRange[0],
       wageMax: salaryRange[1],
       location: location,
-      });
-
+    });
   };
-  
 
   return (
     <>
