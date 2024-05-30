@@ -4,16 +4,15 @@ import { Technology } from "../../models/technology";
 import { User } from "../../models/user";
 import { Vacancy } from "../../models/vacancy";
 import { GetVacancies } from "../../services/vacancy";
-import { useUserContext } from "../user/use-user-context";
+
+type VacancyData = Vacancy & {
+  company: Company;
+  advertiser: User;
+  technologies: Technology[];
+};
 
 type VacanciesList = {
-  vacancies: {
-    vacancy: Vacancy & {
-      company: Company;
-      advertiser: User;
-      technologies: Technology[];
-    };
-  }[];
+  vacancies: VacancyData[];
   page: number;
   limit: number;
   totalPage: number;
@@ -21,35 +20,46 @@ type VacanciesList = {
 };
 
 type State = {
-  vacanciesList: undefined | VacanciesList
+  vacanciesList: undefined | VacanciesList;
+  fetchVacancies: () => void;
 };
 
 const INITIAL_STATE = {
   vacanciesList: undefined,
+  fetchVacancies: () => {},
+};
+
+type Props = {
+  vacancyRole?: string;
+  technologyIds?: number[];
+  vacancyTypes?: string[];
+  wageMin?: number;
+  wageMax?: number;
+  location?: string;
 };
 
 export const useVacancyList = () => {
-  const { token } = useUserContext();
   const [state, setState] = useState<State>(INITIAL_STATE);
 
-  const fetchVacancies = async () => {
-    if (!token) {
-      return;
-    }
-    const { vacanciesList } = await GetVacancies({ token });
+  const fetchVacancies = async (props: Props) => {
+    const { vacanciesList } = await GetVacancies(props);
 
     if (!vacanciesList) {
       return "error";
     }
 
-    setState({ vacanciesList });
+    setState((prevState) => ({
+      ...prevState,
+      vacanciesList: vacanciesList,
+    }));
   };
 
   useEffect(() => {
-    fetchVacancies();
-  }, [token]);
+    fetchVacancies({});
+  }, []);
 
   return {
     vacanciesList: state.vacanciesList,
+    fetchVacancies: fetchVacancies,
   };
 };

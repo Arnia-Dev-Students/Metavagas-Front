@@ -38,6 +38,6 @@ export namespace DeleteTechnologyDTO {
 }
 
 export namespace GetTechnologiesDTO {
-  export type IParams = { token: string };
+  export type IParams = {};
   export type IResponse = Technology[];
 }

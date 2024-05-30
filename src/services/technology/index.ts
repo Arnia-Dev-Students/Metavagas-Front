@@ -41,13 +41,11 @@ export const GetTechnology = async (params: GetTechnologyDTO.IParams) => {
 
 export const GetTechnologies = async (params: GetTechnologiesDTO.IParams) => {
   try {
-    const { token } = params;
     const response = await api.get<GetTechnologiesDTO.IResponse>(
-      "/technologies",
-      { params, headers: { Authorization: `Bearer ${token}` } }
+      "/technologies", {
+        params,
+      }
     );
-
-    console.log(response)
 
     return {
       success: true,

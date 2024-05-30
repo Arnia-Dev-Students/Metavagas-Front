@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import BarraPesquisa from "../../components/BarraDePesquisa";
 import { Conteiner } from "../../components/baselayot/style";
 import CadastroBtn from "../../components/buttonAm";
@@ -8,26 +8,64 @@ import * as S from "./style";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
 import Vagas from "../../components/Vagas";
-//import Vagas from "../../components/Vagas";
 
 const PagListagem = () => {
-  const { vacanciesList } = useVacancyList()
-  const { technologies } = useGetTechnologies()
+  const { technologies } = useGetTechnologies();
 
-  console.log("Vacancies: ", vacanciesList)
-  console.log("Technologies", technologies)
-  
-  const [values, setValues] = useState([0, 80000]);
+  const [vacancyRole, setVacancyRole] = useState("");
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    []
+  );
+  const [vacancyTypes, setVacancyTypes] = useState<string[]>([]);
+  const [salaryRange, setSalaryRange] = useState([0, 80000]);
+  const [location, setLocation] = useState("");
+
+  const { vacanciesList, fetchVacancies } = useVacancyList();
 
   const handleSliderChange = (newValues: number | readonly number[]) => {
-    setValues(newValues as number[]);
+    setSalaryRange(newValues as number[]);
+  };
+
+  const handleSearchChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { value } = event.target;
+      setter(value);
+    };
+
+  const handleFilterChange =
+    (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { value, checked } = event.target;
+      setter((prev) =>
+        checked ? [...prev, value] : prev.filter((item) => item !== value)
+      );
+    };
+
+  const handleFilter = () => {
+    fetchVacancies({
+      vacancyRole: vacancyRole,
+      technologyIds: selectedTechnologies.map(Number),
+      vacancyTypes: vacancyTypes,
+      wageMin: salaryRange[0],
+      wageMax: salaryRange[1],
+      location: location,
+    });
   };
 
   return (
     <>
       <Conteiner>
         <Conteiner85>
-          <BarraPesquisa tema={"dark"} />
+          <BarraPesquisa
+            handleSearchChange={handleSearchChange}
+            vacancyRole={vacancyRole}
+            setVacancyRole={setVacancyRole}
+            location={location}
+            setLocation={setLocation}
+            handleFilter={handleFilter}
+            tema={"dark"}
+          />
         </Conteiner85>
       </Conteiner>
       <ConteinerWhithe>
@@ -37,7 +75,7 @@ const PagListagem = () => {
               <S.ListH2>
                 Vagas em <b>React</b>
               </S.ListH2>
-              <S.SubH2>225 vagas encontradas</S.SubH2>
+              <S.SubH2>{vacanciesList?.totalCount} vagas encontradas</S.SubH2>
             </S.Titlediv>
 
             <S.DivLayout>
@@ -50,41 +88,18 @@ const PagListagem = () => {
                 <div>
                   <S.SubH3>Tecnologia</S.SubH3>
 
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" name="react" id="react" />
-                    <S.CheckboxLabel htmlFor="react">React</S.CheckboxLabel>
-                  </S.Inputsdiv>
-
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">PHP</S.CheckboxLabel>
-                  </S.Inputsdiv>
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">Java</S.CheckboxLabel>
-                  </S.Inputsdiv>
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">Phyton</S.CheckboxLabel>
-                  </S.Inputsdiv>
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">.Net</S.CheckboxLabel>
-                  </S.Inputsdiv>
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">CSS</S.CheckboxLabel>
-                  </S.Inputsdiv>
-
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">HTML</S.CheckboxLabel>
-                  </S.Inputsdiv>
-
-                  <S.Inputsdiv>
-                    <S.CheckboxInput type="Checkbox" name="react" />
-                    <S.CheckboxLabel htmlFor="">Ruby</S.CheckboxLabel>
-                  </S.Inputsdiv>
+                  {technologies?.map((technology, index) => (
+                    <S.Inputsdiv key={index}>
+                      <S.CheckboxInput
+                        type="checkbox"
+                        value={technology.id}
+                        onChange={handleFilterChange(setSelectedTechnologies)}
+                      />
+                      <S.CheckboxLabel htmlFor={technology.tecName}>
+                        {technology.tecName}
+                      </S.CheckboxLabel>
+                    </S.Inputsdiv>
+                  ))}
 
                   <S.Bluesp>Ver mais...</S.Bluesp>
                 </div>
@@ -93,17 +108,29 @@ const PagListagem = () => {
                   <S.SubH3>Tipo de vaga</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput
+                      type="checkbox"
+                      value="Remoto"
+                      onChange={handleFilterChange(setVacancyTypes)}
+                    />
                     <S.CheckboxLabel htmlFor="">Remoto</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput
+                      type="checkbox"
+                      value="Presencial"
+                      onChange={handleFilterChange(setVacancyTypes)}
+                    />
                     <S.CheckboxLabel htmlFor="">Presencial</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput
+                      type="checkbox"
+                      value="Hibrido"
+                      onChange={handleFilterChange(setVacancyTypes)}
+                    />
                     <S.CheckboxLabel htmlFor="">Hibrido</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
@@ -112,12 +139,12 @@ const PagListagem = () => {
                   <S.SubH3>Regime de trabalho</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Clt" />
                     <S.CheckboxLabel htmlFor="">Clt</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="PJ" />
                     <S.CheckboxLabel htmlFor="">PJ</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
@@ -126,17 +153,17 @@ const PagListagem = () => {
                   <S.SubH3>Tamanho da empresa</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Pequena" />
                     <S.CheckboxLabel htmlFor="">Pequena</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Média" />
                     <S.CheckboxLabel htmlFor="">Média</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Grande" />
                     <S.CheckboxLabel htmlFor="">Grande</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
@@ -146,14 +173,14 @@ const PagListagem = () => {
                     Faixa salarial
                     <p>
                       <S.StyleSpan>
-                        R$ {values[0]} - R$ {values[1]}
+                        R$ {salaryRange[0]} - R$ {salaryRange[1]}
                       </S.StyleSpan>
                     </p>
                   </S.SubH3>
 
                   <S.SliderWrapper>
                     <S.StyledSlider
-                      value={values}
+                      value={salaryRange}
                       min={0}
                       max={30000}
                       step={100}
@@ -167,30 +194,27 @@ const PagListagem = () => {
                 </div>
 
                 <div>
-                  <S.SubH3>Nível de experiencia</S.SubH3>
+                  <S.SubH3>Nível de experiência</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Júnior" />
                     <S.CheckboxLabel htmlFor="">Júnior</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    {" "}
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Pleno" />
                     <S.CheckboxLabel htmlFor="">Pleno</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" />
+                    <S.CheckboxInput type="checkbox" value="Sênior" />
                     <S.CheckboxLabel htmlFor="">Sênior</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
                 <CadastroBtn
                   width="100%"
                   children={"Filtrar"}
-                  onClick={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
+                  onClick={handleFilter}
                 />
               </S.Filtrodiv>
 
@@ -199,11 +223,26 @@ const PagListagem = () => {
                   <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
                   <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
                 </S.Graficodiv>
-                 <div>
-                  <Vagas />
-                  <Vagas />
-                  <Vagas />
-                </div> 
+                <div>
+                  {vacanciesList?.vacancies.map((vacancy, index) => (
+                    <Vagas
+                      index={index}
+                      key={index}
+                      id={vacancy.id}
+                      vacancyRole={vacancy.vacancyRole}
+                      wage={vacancy.wage}
+                      location={vacancy.location}
+                      vacancyType={vacancy.vacancyType}
+                      vacancyDescription={vacancy.vacancyDescription}
+                      level={vacancy.level}
+                      createdAt={vacancy.createdAt}
+                      updatedAt={vacancy.updatedAt}
+                      advertiser={vacancy.advertiser}
+                      company={vacancy.company}
+                      technologies={vacancy.technologies}
+                    />
+                  ))}
+                </div>
               </S.Listagemdiv2>
             </S.DivLayout>
           </Conteiner85>

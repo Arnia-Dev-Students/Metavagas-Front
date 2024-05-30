@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from "date-fns";
 import { Company } from "../../models/company";
 import { Technology } from "../../models/technology";
 import { User } from "../../models/user";
@@ -17,44 +18,41 @@ interface VagaProp {
   advertiser: User;
   company: Company;
   technologies: Technology[];
+  index: number
 }
 
 const Vagas = (vaga: VagaProp) => {
-  console.log(vaga)
   return (
     <S.Cardvaga /*style={{ border: vaga.isRecent ? '1px #6950A1' : '1px #ECF1F4' }}*/
     >
       <S.Superiordiv>
         <div>
-          <S.NovaBtn>Nova</S.NovaBtn>{" "}
+          {vaga.index === 0 && <S.NovaBtn>Nova</S.NovaBtn>}{" "}
         </div>
         <S.Datediv>
-          <S.Bold></S.Bold>• {}
+          <S.Bold></S.Bold>• {formatDistanceToNow(vaga.createdAt)}
         </S.Datediv>
       </S.Superiordiv>
-      <S.TitleVaga>Desenvolvedor de Sistemas Pleno</S.TitleVaga>
-      <S.Subspan>Empresa: iZap Softworks</S.Subspan>
+      <S.TitleVaga>{vaga.vacancyRole}</S.TitleVaga>
+      <S.Subspan>Empresa: {vaga.company.name}</S.Subspan>
       <S.Buttondiv>
-        <ButtonTec tec={"php"} />
-        <ButtonTec tec={"Phynto"} />
-        <ButtonTec tec={"JavaScript"} />
+        {vaga.technologies.map((technology, index) => (
+          <ButtonTec key={index} tec={technology.tecName} />
+        ))}
       </S.Buttondiv>
       <S.Detailsdiv>
         <S.Detailspan>
-          <S.Dollar /> Faixa salarial: <b>R$ 4.000,00</b>
+          Faixa salarial: <b>R$ {vaga.wage}</b>
         </S.Detailspan>
         <S.Detailspan>
-          <S.Local/> Localização: <b>Belo Horizonte</b>
+          Localização: <b>{vaga.location}</b>
         </S.Detailspan>
         <S.Detailspan>
-          <S.Monitor1 />Tipo de vaga: <b>Home officeHome office</b>
+          Tipo de vaga: <b>{vaga.vacancyType}</b>
         </S.Detailspan>
       </S.Detailsdiv>
       <S.Description>
-        Oferecemos um ambiente em que todos são protagonistas e agentes de
-        transformação. Temos um excelente clima organizacional com pessoas
-        engajadas em entregar os melhores resultados, assim como grandes
-        oportunidades...
+        {vaga.vacancyDescription}
       </S.Description>
     </S.Cardvaga>
   );

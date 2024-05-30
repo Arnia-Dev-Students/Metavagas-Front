@@ -17,16 +17,23 @@ export namespace CreateVacancyDTO {
   export type IResponse = Vacancy;
 }
 
+type VacancyData = Vacancy & {
+  company: Company;
+  advertiser: User;
+  technologies: Technology[];
+};
+
 export namespace GetAllVacanciesDTO {
-  export type IParams = { token: string };
+  export type IParams = {
+    vacancyRole?: string
+    technologyIds?: number[]
+    vacancyTypes?: string[]
+    wageMin?: number,
+    wageMax?: number,
+    location?: string
+  };
   export type IResponse = {
-    vacancies: {
-      vacancy: Vacancy & {
-        company: Company;
-        advertiser: User;
-        technologies: Technology[];
-      };
-    }[];
+    vacancies: VacancyData[];
     page: number;
     limit: number;
     totalPage: number;
