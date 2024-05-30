@@ -8,12 +8,14 @@ import * as S from "./style";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useGetTechnologies } from "../../hooks/technology/use-get-technologies";
 import Vagas from "../../components/Vagas";
+import { useUserContext } from "../../hooks/user/use-user-context";
 
 const PagListagem = () => {
   
   //const searchContext = useContext(SearchContext);
   //const { searchTerm, searchLocation } = searchContext;
-
+  const { user } = useUserContext()
+ 
 
 
   const { technologies } = useGetTechnologies();
@@ -226,8 +228,15 @@ const PagListagem = () => {
 
               <S.Listagemdiv2>
                 <S.Graficodiv>
-                  <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" />
-                  <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" />
+                  <div>
+                      {user && <S.Styleimg src="/src/assets/imgs/Frame 47.png" alt="" /> }
+                  </div>
+                  <div>
+                    {user && <S.Styleimg src="/src/assets/imgs/Frame 48.png" alt="" /> }
+                  </div>
+          
+                  
+                  
                 </S.Graficodiv>
                 <div>
                   {vacanciesList?.vacancies.map((vacancy, index) => (
