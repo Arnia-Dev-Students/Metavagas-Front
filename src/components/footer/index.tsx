@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../hooks/user/use-user-context";
 import CadastroBtn from "../buttonAm";
 import { EntrarBtn, Meta, Vagas } from "../navbar/style";
 import {
@@ -11,6 +13,10 @@ import {
 } from "./style";
 
 const Footer = () => {
+
+  const navigate = useNavigate()
+  const { user } = useUserContext();
+  
   return (
     <FooterStyle>
       <div>
@@ -32,10 +38,13 @@ const Footer = () => {
           Av. do Contorno, 2905 Santa Efigênia, Belo Horizonte - MG, 30110-080.
         </PDados>
       </Contatos>
-      <div>
-        <EntrarBtn>Entrar</EntrarBtn>
-        <CadastroBtn onClick={() => {}}>Cadastre-se gratuitamente</CadastroBtn>
-      </div>
+      
+        {!user && <div>
+          <EntrarBtn onClick={() => navigate('login')} >Entrar</EntrarBtn>
+          <CadastroBtn onClick={() => navigate('cadastro')}>Cadastre-se gratuitamente</CadastroBtn>        
+        </div> }
+          
+              
     </FooterStyle>
   );
 };
