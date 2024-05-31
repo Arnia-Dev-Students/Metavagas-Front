@@ -25,14 +25,14 @@ type VacancyData = Vacancy & {
 
 export namespace GetAllVacanciesDTO {
   export type IParams = {
-    vacancyRole?: string
-    technologyIds?: number[]
-    vacancyTypes?: string[]
-    wageMin?: number,
-    wageMax?: number,
-    location?: string,
-    page?: number,
-    limit?: number
+    vacancyRole?: string;
+    technologyIds?: number[];
+    vacancyTypes?: string[];
+    wageMin?: number;
+    wageMax?: number;
+    location?: string;
+    page?: number;
+    limit?: number;
   };
   export type IResponse = {
     vacancies: VacancyData[];

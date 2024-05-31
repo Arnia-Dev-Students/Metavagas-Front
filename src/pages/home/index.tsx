@@ -11,36 +11,49 @@ import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useEffect, useState } from "react";
 
 type FilteredArray = {
-  id: number,
-  title: string,
-}
+  id: number;
+  title: string;
+};
 
 const Home = () => {
-  const navigate = useNavigate()
-  const { user } = useUserContext()
+  const navigate = useNavigate();
+  const { user } = useUserContext();
   const { vacanciesList } = useVacancyList({ limit: 16 });
 
-
   const [filteredArray, setFilteredArray] = useState<FilteredArray[]>([]);
-  const [filterType, setFilterType] = useState<"cidades" | "tecnologias" | "cargos">("tecnologias");
-  
+  const [filterType, setFilterType] = useState<
+    "cidades" | "tecnologias" | "cargos"
+  >("tecnologias");
+
   const handleTecnologiasClick = () => {
-    const tecnologias = vacanciesList?.vacancies.flatMap(vacancy =>
-      vacancy.technologies.map(tech => {return {id: tech.id, title: tech.tecName}})).slice(0, 16) || [];
+    const tecnologias =
+      vacanciesList?.vacancies
+        .flatMap((vacancy) =>
+          vacancy.technologies.map((tech) => {
+            return { id: tech.id, title: tech.tecName };
+          })
+        )
+        .slice(0, 16) || [];
     setFilteredArray(tecnologias);
-    setFilterType('tecnologias');
+    setFilterType("tecnologias");
   };
 
   const handleCidadesClick = () => {
-    const cidades = vacanciesList?.vacancies.map(vacancy => {return {id: vacancy.id, title: vacancy.location}}) || [];
+    const cidades =
+      vacanciesList?.vacancies.map((vacancy) => {
+        return { id: vacancy.id, title: vacancy.location };
+      }) || [];
     setFilteredArray(cidades);
-    setFilterType('cidades');
+    setFilterType("cidades");
   };
 
   const handleCargosClick = () => {
-    const cargos = vacanciesList?.vacancies.map(vacancy => {return {id: vacancy.id, title: vacancy.vacancyRole}}) || [];
+    const cargos =
+      vacanciesList?.vacancies.map((vacancy) => {
+        return { id: vacancy.id, title: vacancy.vacancyRole };
+      }) || [];
     setFilteredArray(cargos);
-    setFilterType('cargos');
+    setFilterType("cargos");
   };
 
   useEffect(() => {
@@ -48,7 +61,7 @@ const Home = () => {
       handleTecnologiasClick();
     }
   }, [vacanciesList]);
-  
+
   return (
     <>
       <Conteiner>
@@ -71,28 +84,33 @@ const Home = () => {
       </Conteiner>
       <ConteinerWhithe>
         <Conteiner>
-          <S.Conteiner85>           
-          <BarraPesquisaHome tema={"light"} />
+          <S.Conteiner85>
+            <BarraPesquisaHome tema={"light"} />
             <S.Bodydiv>
-            
               <S.Homeh2>Vagas mais recentes</S.Homeh2>
 
               <S.Griddiv>
-                {vacanciesList?.vacancies.slice(0, 4).map(( vacancy , index) => (
-                  <VagaCard
-                    key={index}
-                    title={vacancy?.vacancyRole}
-                    location={vacancy?.location}
-                    technology={vacancy?.technologies?.map(tech => tech.tecName).join(", ")}
-                  />
-                )) || <p>No vacancies available</p>}
+                {vacanciesList?.vacancies
+                  .slice(0, 4)
+                  .map((vacancy, index) => (
+                    <VagaCard
+                      key={index}
+                      title={vacancy?.vacancyRole}
+                      location={vacancy?.location}
+                      technology={vacancy?.technologies
+                        ?.map((tech) => tech.tecName)
+                        .join(", ")}
+                    />
+                  )) || <p>No vacancies available</p>}
               </S.Griddiv>
 
               <S.ConteinerBtn>
-                {!user && <CadastroBtn
-                  children={"Cadastre-se para ver mais vagas"}
-                  onClick={() => navigate('cadastro')}
-                />}
+                {!user && (
+                  <CadastroBtn
+                    children={"Cadastre-se para ver mais vagas"}
+                    onClick={() => navigate("cadastro")}
+                  />
+                )}
               </S.ConteinerBtn>
             </S.Bodydiv>
           </S.Conteiner85>
@@ -104,35 +122,50 @@ const Home = () => {
             <S.Wh100div>
               <S.Homeh2Yelow>Vagas de emprego em todo Brasil</S.Homeh2Yelow>
               <S.Flexdiv2>
-                <S.Filtrodiv active={filterType === "tecnologias"} onClick={handleTecnologiasClick}>
+                <S.Filtrodiv
+                  active={filterType === "tecnologias"}
+                  onClick={handleTecnologiasClick}
+                >
                   <S.Monitor1 />
                   Tecnologia
                 </S.Filtrodiv>
-                <S.Filtrodiv active={filterType === "cidades"} onClick={handleCidadesClick}>
+                <S.Filtrodiv
+                  active={filterType === "cidades"}
+                  onClick={handleCidadesClick}
+                >
                   <S.Local />
                   Cidades
                 </S.Filtrodiv>
-                <S.Filtrodiv active={filterType === "cargos"} onClick={handleCargosClick}>
+                <S.Filtrodiv
+                  active={filterType === "cargos"}
+                  onClick={handleCargosClick}
+                >
                   <S.Maleta />
                   Cargos
                 </S.Filtrodiv>
               </S.Flexdiv2>
             </S.Wh100div>
-            { !user && <S.CardCadastre>
-               <S.UserPl />
-              Faça seu <Link to={"cadastro"}>cadastro gratuito</Link> e encontre
-              vagas de acordo com o seu perfil.
-            </S.CardCadastre> }
+            {!user && (
+              <S.CardCadastre>
+                <S.UserPl />
+                Faça seu <Link to={"cadastro"}>cadastro gratuito</Link> e
+                encontre vagas de acordo com o seu perfil.
+              </S.CardCadastre>
+            )}
           </S.Flexdiv>
         </S.Conteiner85>
       </Conteiner>
       <Conteiner>
         <S.Conteiner85>
-        <S.GridLinks>
-      {filteredArray.map((item, index) => (
-        <LinksRapidos key={index} filterType={filterType} filterItem={item} />
-      ))}
-      </S.GridLinks>
+          <S.GridLinks>
+            {filteredArray.map((item, index) => (
+              <LinksRapidos
+                key={index}
+                filterType={filterType}
+                filterItem={item}
+              />
+            ))}
+          </S.GridLinks>
         </S.Conteiner85>
       </Conteiner>
     </>

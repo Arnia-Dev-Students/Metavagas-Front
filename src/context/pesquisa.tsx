@@ -15,7 +15,7 @@ export const SearchContext = createContext<SearchContext>({
   setSearchTerm: () => {},
   setSearchLocation: () => {},
   searchTechnology: null,
-  setSearchTechnology: () => {}
+  setSearchTechnology: () => {},
 });
 
 interface SearchProviderProps {
@@ -29,7 +29,14 @@ export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
 
   return (
     <SearchContext.Provider
-      value={{ searchTerm, setSearchTerm, searchLocation, setSearchLocation, searchTechnology, setSearchTechnology }}
+      value={{
+        searchTerm,
+        setSearchTerm,
+        searchLocation,
+        setSearchLocation,
+        searchTechnology,
+        setSearchTechnology,
+      }}
     >
       {children}
     </SearchContext.Provider>

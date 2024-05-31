@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Location } from "@styled-icons/ionicons-outline/Location";
 import { Suitcase } from "@styled-icons/remix-line/Suitcase";
 
-
 export const CardDiv = styled.div`
   border: 1px solid #ecf1f4;
   border-radius: 15px;
@@ -35,18 +34,18 @@ export const Flexdiv = styled.div`
 export const CardA = styled.a`
   font-weight: 700;
   font-size: 14;
-  color: #5D5FEF;
+  color: #5d5fef;
   text-decoration: none;
 `;
 
 export const LocalA = styled(Location)`
   width: 20px;
   margin-right: 8px;
-  color: ${(props) => props.theme.colors.amarelo} ;
+  color: ${(props) => props.theme.colors.amarelo};
 `;
 
 export const MaletaA = styled(Suitcase)`
   width: 20px;
   margin-right: 8px;
-  color: ${(props) => props.theme.colors.amarelo} ;
+  color: ${(props) => props.theme.colors.amarelo};
 `;

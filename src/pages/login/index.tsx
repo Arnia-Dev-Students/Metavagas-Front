@@ -8,7 +8,7 @@ import { Login, Me } from "../../services/auth";
 import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { EmailOut, Userplus } from "../cadastro/style";
 import { useUserContext } from "../../hooks/user/use-user-context";
-import * as CONSTANTS from "../../utils/constants/constants"
+import * as CONSTANTS from "../../utils/constants/constants";
 import { useState } from "react";
 
 export const LoginPag = () => {

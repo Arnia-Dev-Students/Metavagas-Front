@@ -73,6 +73,4 @@ export const LogOut = styled.button`
   position: absolute;
   margin-top: 50px;
   margin-left: 120px;
-  
 `;
-

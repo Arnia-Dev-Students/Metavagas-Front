@@ -132,8 +132,7 @@ export const Imgdiv = styled.div`
 export const Btdiv = styled.div`
   position: absolute;
   top: 50%;
-  left: 25%; 
-  
+  left: 25%;
 `;
 
 // chekbox

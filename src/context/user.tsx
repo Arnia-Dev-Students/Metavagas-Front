@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 import { Me } from "../services/auth/index";
 
-import * as CONSTANTS from "../utils/constants/constants"
+import * as CONSTANTS from "../utils/constants/constants";
 
 type User = {
   id: number;
@@ -16,15 +16,15 @@ type User = {
 
 type State = {
   user: User | null;
-  token: string | null
+  token: string | null;
 };
 
 type UserContext = {
   user: User | null;
-  token: string | null
+  token: string | null;
   updateUser: (user: User, token: string) => void;
   logout: () => void;
-  isAdmin: () => boolean
+  isAdmin: () => boolean;
 };
 
 type Props = {
@@ -36,13 +36,13 @@ export const UserContext = createContext<UserContext>({
   token: null,
   updateUser: () => {},
   logout: () => {},
-  isAdmin: () => false
+  isAdmin: () => false,
 });
 
 export const UserContextProvider: React.FC<Props> = ({ children }) => {
   const [state, setState] = useState<State>({
     user: null,
-    token: null
+    token: null,
   });
 
   const autoLogin = async () => {
@@ -63,7 +63,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
     localStorage.setItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY, token);
     setState({
       user,
-      token
+      token,
     });
   };
 
@@ -72,17 +72,17 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
 
     setState({
       user: null,
-      token: null
+      token: null,
     });
   };
 
   const isAdmin = () => {
-    const role = state.user?.role
-    if(!role) {
-      return false
+    const role = state.user?.role;
+    if (!role) {
+      return false;
     }
-    return CONSTANTS.ADMIN_ONLY.includes(role)
-  }
+    return CONSTANTS.ADMIN_ONLY.includes(role);
+  };
 
   useEffect(() => {
     if (!state.user) {
@@ -97,7 +97,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
         token: state.token,
         updateUser,
         logout: cleanUser,
-        isAdmin
+        isAdmin,
       }}
     >
       {children}

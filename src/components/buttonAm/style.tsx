@@ -8,5 +8,5 @@ export const StyledButton = styled.button<{ width?: string }>`
   border-radius: 8px;
   color: ${(props) => props.theme.colors.preto};
   font-weight: 600;
-  width: ${({ width }) => width || 'auto'};
+  width: ${({ width }) => width || "auto"};
 `;

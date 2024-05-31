@@ -8,9 +8,9 @@ export const Conteiner85 = styled.div`
   width: 85%;
   display: flex;
   margin-bottom: 10px;
-  overflow: hidden; 
-  flex-direction: column
-  `;
+  overflow: hidden;
+  flex-direction: column;
+`;
 
 export const Whitspan = styled.span`
   color: white;
@@ -90,12 +90,15 @@ export const Flexdiv = styled.div`
 export const Filtrodiv = styled("div")<{ active: boolean }>`
   font-size: ${(props) => props.theme.fontSizes.large};
   font-weight: 400;
-  color: ${(props) => props.active ? props.theme.colors.amarelo : props.theme.colors.branco};
+  color: ${(props) =>
+    props.active ? props.theme.colors.amarelo : props.theme.colors.branco};
   display: flex;
   align-items: center;
   justify-content: center;
   width: 34%;
-  border-bottom: 1px solid ${(props) => props.active ? props.theme.colors.amarelo : props.theme.colors.branco};;
+  border-bottom: 1px solid
+    ${(props) =>
+      props.active ? props.theme.colors.amarelo : props.theme.colors.branco};
   padding-bottom: 15px;
   cursor: pointer;
 `;

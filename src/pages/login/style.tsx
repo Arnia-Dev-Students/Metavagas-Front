@@ -132,6 +132,5 @@ export const Pcard = styled.p`
 
 export const ErrorForm = styled.span`
   font-size: ${(props) => props.theme.fontSizes.small};
-  color: red
-  
-`
+  color: red;
+`;
