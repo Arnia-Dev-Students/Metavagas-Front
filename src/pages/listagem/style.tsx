@@ -75,7 +75,6 @@ export const Graficodiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
-  
 `;
 
 export const Styleimg = styled.img`
@@ -123,6 +122,18 @@ export const StyleSpan = styled.span`
   color: #8c8ca1;
   font-size: 14px;
   font-weight: 400;
+`;
+
+export const Imgdiv = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const Btdiv = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 25%; 
+  
 `;
 
 // chekbox

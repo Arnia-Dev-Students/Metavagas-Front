@@ -46,7 +46,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
   });
 
   const autoLogin = async () => {
-    const token = localStorage.getItem("metavagas-token"); //FAZER UM HOOK PARA LIDAR COM LOCALSTORAGE
+    const token = localStorage.getItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY); //FAZER UM HOOK PARA LIDAR COM LOCALSTORAGE
 
     if (!token) return cleanUser();
 
@@ -60,7 +60,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const updateUser = (user: User, token: string) => {
-    localStorage.setItem("metavagas-token", token);
+    localStorage.setItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY, token);
     setState({
       user,
       token
@@ -68,7 +68,7 @@ export const UserContextProvider: React.FC<Props> = ({ children }) => {
   };
 
   const cleanUser = () => {
-    localStorage.removeItem("metavagas-token");
+    localStorage.removeItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY);
 
     setState({
       user: null,
