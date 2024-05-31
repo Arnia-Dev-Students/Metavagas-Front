@@ -39,7 +39,7 @@ const NavBar: React.FC<Props> = ({ user }) => {
 
   return (
     <NavStyle>
-      <div>
+      <div>        
         <Meta>meta</Meta>
         <Vagas>vagas</Vagas>
       </div>

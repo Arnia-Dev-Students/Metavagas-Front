@@ -77,7 +77,7 @@ const Home = () => {
               </Loginh1>
             </S.Texdiv>
             <S.Fotodiv>
-              <img src="./src/assets/imgs/GordinTec.png" alt="" />
+              <img src="/static/images/GordinTec.png" alt="" />
             </S.Fotodiv>
           </S.HomeLogo>
         </S.Conteiner85>

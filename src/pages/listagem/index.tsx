@@ -232,7 +232,7 @@ const PagListagem = () => {
                   <S.Imgdiv>
                     <S.Styleimg
                       style={user ? {} : { filter: "blur(10px)" }}
-                      src="/src/assets/imgs/Frame 47.png"
+                      src="/static/images/Frame 47.png"
                       alt=""
                     />
 
@@ -251,7 +251,7 @@ const PagListagem = () => {
                   <S.Imgdiv>
                     <S.Styleimg
                       style={user ? {} : { filter: "blur(10px)" }}
-                      src="/src/assets/imgs/Frame 48.png"
+                      src="/static/images/Frame 48.png"
                       alt=""
                     />
 
