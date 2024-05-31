@@ -8,8 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { Register } from "../../services/auth";
 import { Userplus } from "./style";
+import { useState } from "react";
 
 const Cadastro = () => {
+
+  const [cadastroError, setcadastroError] = useState(false);
   const navigate = useNavigate();
 
   const RegisterFormSchema = z
@@ -50,9 +53,11 @@ const Cadastro = () => {
       if (result.success) {
         navigate("/login");
       } else {
+        setcadastroError(true);
         console.log("Registration failed");
       }
     } catch (error) {
+      setcadastroError(true);
       console.error("Registration error:", error);
     }
   };
@@ -111,6 +116,9 @@ const Cadastro = () => {
 
         <S.DivForm>
           <S.LoginBtn>Cadastrar</S.LoginBtn>
+          {cadastroError && (
+            <S.ErrorForm>Falha ao realizar o cadastro tente novamente</S.ErrorForm>
+          )}
         </S.DivForm>
 
         <S.RodapeForm>
@@ -128,9 +136,7 @@ const Cadastro = () => {
         <ConteinerCadastro>
           <S.Textdiv>
             <S.Plogin>CADASTRE-SE</S.Plogin>
-            <S.Loginh1>
-              Fique por dentro de todas as vagas
-            </S.Loginh1>
+            <S.Loginh1>Fique por dentro de todas as vagas</S.Loginh1>
             <S.Ptext>
               <Userplus />
               <p>Com um único cadastro você consegue encontrar sua vaga </p>

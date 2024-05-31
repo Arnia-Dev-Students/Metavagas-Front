@@ -1,6 +1,5 @@
-import { ChangeEvent, Dispatch, useContext } from "react";
+import { ChangeEvent, Dispatch } from "react";
 import * as S from "./style";
-import { SearchContext } from "../../context/pesquisa";
 
 interface BarraPesquisaProps {
   tema: "light" | "dark";

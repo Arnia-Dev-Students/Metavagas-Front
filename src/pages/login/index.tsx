@@ -9,10 +9,12 @@ import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { EmailOut, Userplus } from "../cadastro/style";
 import { useUserContext } from "../../hooks/user/use-user-context";
 import * as CONSTANTS from "../../utils/constants/constants"
+import { useState } from "react";
 
 export const LoginPag = () => {
+  const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
-  const { updateUser } = useUserContext()
+  const { updateUser } = useUserContext();
 
   const loginFormSchema = z.object({
     email: z
@@ -35,25 +37,24 @@ export const LoginPag = () => {
 
   const handleLogin = async (data: LoginFormData) => {
     const { ...rest } = data;
-    const { success, message, token} = await Login(rest);
+    const { success, message, token } = await Login(rest);
 
     if (!success || !token) {
-      //definir como vai mostrar a falha de login
-      console.log(message)
-      return
+      console.log(message);
+      setLoginError(true);
+      return;
     }
 
     localStorage.setItem(CONSTANTS.LOCALSTORAGE_TOKEN_KEY, token);
 
     const { user } = await Me({ token });
 
-    if(user) {
-      updateUser(user, token)
+    if (user) {
+      updateUser(user, token);
     }
 
     navigate("/");
   };
-
 
   return (
     <>
@@ -88,6 +89,12 @@ export const LoginPag = () => {
           <S.LoginBtn type="submit">Entrar</S.LoginBtn>
         </S.DivForm>
 
+        {loginError && (
+          <S.ErrorForm>
+            Aviso: Falha no login. Verifique suas credenciais.
+          </S.ErrorForm>
+        )}
+
         <S.RodapeForm>
           Não é cadastrado?{" "}
           <S.Astyled
@@ -107,11 +114,11 @@ export const LoginPag = () => {
               Fique por dentro <p>de todas as vagas</p>
             </S.Loginh1>
             <S.Ptext>
-              <Userplus/>
+              <Userplus />
               <p>Com um único cadastro você consegue encontrar sua vaga </p>
             </S.Ptext>
             <S.Ptext>
-              <EmailOut/>
+              <EmailOut />
               <p>Receba alertas sobre as vagas que você procura</p>
             </S.Ptext>
           </S.Textdiv>
