@@ -7,11 +7,45 @@ import { ConteinerWhithe, Loginh1, Plogin } from "../login/style";
 import * as S from "./style";
 import { useUserContext } from "../../hooks/user/use-user-context";
 import BarraPesquisaHome from "../../components/BarraPesquisaHome";
+import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const navigate = useNavigate()
   const { user } = useUserContext()
- 
+
+  const { vacanciesList } = useVacancyList({});
+    
+  console.log(vacanciesList);
+
+  const [filteredArray, setFilteredArray] = useState<string[]>([]);
+  const [filterType, setFilterType] = useState<string>('');
+  
+  const handleTecnologiasClick = () => {
+    const tecnologias = vacanciesList?.vacancies.flatMap(vacancy =>
+      vacancy.technologies.map(tech => tech.tecName)).slice(0, 16) || [];
+    setFilteredArray(tecnologias);
+    setFilterType('Tecnologia');
+  };
+
+  const handleCidadesClick = () => {
+    const cidades = vacanciesList?.vacancies.map(vacancy => vacancy.location).slice(0, 16) || [];
+    setFilteredArray(cidades);
+    setFilterType('Cidades');
+  };
+
+  const handleCargosClick = () => {
+    const cargos = vacanciesList?.vacancies.map(vacancy => vacancy.vacancyRole).slice(0, 16) || [];
+    setFilteredArray(cargos);
+    setFilterType('Cargos');
+  };
+
+  useEffect(() => {
+    if (vacanciesList) {
+      handleTecnologiasClick();
+    }
+  }, [vacanciesList]);
+  
   return (
     <>
       <Conteiner>
@@ -41,28 +75,16 @@ const Home = () => {
               <S.Homeh2>Vagas mais recentes</S.Homeh2>
 
               <S.Griddiv>
-                
-                <VagaCard
-                  title="Desenvolvedor Frontend"
-                  location="São Paulo, SP"
-                  technology="React"
-                />
-                <VagaCard
-                  title="Desenvolvedor Backend"
-                  location="Rio de Janeiro, RJ"
-                  technology="Node.js"
-                />
-                <VagaCard
-                  title="Desenvolvedor Frontend"
-                  location="São Paulo, SP"
-                  technology="React"
-                />
-                <VagaCard
-                  title="Desenvolvedor Backend"
-                  location="Rio de Janeiro, RJ"
-                  technology="Node.js"
-                />
+                {vacanciesList?.vacancies.slice(0, 4).map(( vacancy , index) => (
+                  <VagaCard
+                    key={index}
+                    title={vacancy?.vacancyRole}
+                    location={vacancy?.location}
+                    technology={vacancy?.technologies?.map(tech => tech.tecName).join(", ")}
+                  />
+                )) || <p>No vacancies available</p>}
               </S.Griddiv>
+
               <S.ConteinerBtn>
                 {!user && <CadastroBtn
                   children={"Cadastre-se para ver mais vagas"}
@@ -79,15 +101,15 @@ const Home = () => {
             <S.Wh100div>
               <S.Homeh2Yelow>Vagas de emprego em todo Brasil</S.Homeh2Yelow>
               <S.Flexdiv2>
-                <S.Filtrodiv onClick={() => {}}>
+                <S.Filtrodiv onClick={handleTecnologiasClick}>
                   <S.Monitor1 />
                   Tecnologia
                 </S.Filtrodiv>
-                <S.Filtrodiv onClick={() => {}}>
+                <S.Filtrodiv onClick={handleCidadesClick}>
                   <S.Local />
                   Cidades
                 </S.Filtrodiv>
-                <S.Filtrodiv onClick={() => {}}>
+                <S.Filtrodiv onClick={handleCargosClick}>
                   <S.Maleta />
                   Cargos
                 </S.Filtrodiv>
@@ -103,68 +125,11 @@ const Home = () => {
       </Conteiner>
       <Conteiner>
         <S.Conteiner85>
-          <S.GridLinks>
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-            <LinksRapidos
-              filtro="React"
-              onClick={function (): void {
-                throw new Error("Function not implemented.");
-              }}
-            />
-          </S.GridLinks>
+        <S.GridLinks>
+      {filteredArray.map((item, index) => (
+        <LinksRapidos key={index} filtro={item} onClick={() => {}} />
+      ))}
+      </S.GridLinks>
         </S.Conteiner85>
       </Conteiner>
     </>
