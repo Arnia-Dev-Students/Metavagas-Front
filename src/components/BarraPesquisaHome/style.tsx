@@ -50,7 +50,6 @@ export const Inputdiv = styled.div`
 
 export const LabelStyle = styled.label`
   width: 100%;
-  
 `;
 export const InputStyle = styled.input`
   width: 100%;

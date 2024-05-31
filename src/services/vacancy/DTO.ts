@@ -25,12 +25,14 @@ type VacancyData = Vacancy & {
 
 export namespace GetAllVacanciesDTO {
   export type IParams = {
-    vacancyRole?: string
-    technologyIds?: number[]
-    vacancyTypes?: string[]
-    wageMin?: number,
-    wageMax?: number,
-    location?: string
+    vacancyRole?: string;
+    technologyIds?: number[];
+    vacancyTypes?: string[];
+    wageMin?: number;
+    wageMax?: number;
+    location?: string;
+    page?: number;
+    limit?: number;
   };
   export type IResponse = {
     vacancies: VacancyData[];
@@ -72,15 +74,4 @@ export namespace DeleteVacancyDTO {
   export type IResponse = {
     response: string;
   };
-}
-
-export namespace GetAllVacanciesPublicDTO {
-  export type IParams = {};
-  export type IResponse = {
-    vacancy: Vacancy & {
-      company: Company;
-      advertiser: User;
-      technologies: Technology[];
-    };
-  }[];
 }

@@ -11,14 +11,13 @@ export namespace LoginDTO {
   };
 }
 
-
 export namespace RegisterDTO {
   export type IParams = {
     name: string;
     email: string;
-    password: string    
+    password: string;
   };
-  
+
   export type IResponse = User & {
     password: string;
   };

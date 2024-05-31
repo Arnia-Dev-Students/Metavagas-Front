@@ -5,6 +5,8 @@ type Params = {
   wageMin?: number;
   wageMax?: number;
   location?: string;
+  limit?: number;
+  page?: number;
 };
 
 export function buildQueryString(params: Params): string {
@@ -14,12 +16,12 @@ export function buildQueryString(params: Params): string {
     queryStringParts.push(`vacancyRole=${params.vacancyRole}`);
   }
   if (params.technologyIds && params.technologyIds.length > 0) {
-    params.technologyIds.forEach(id => {
+    params.technologyIds.forEach((id) => {
       queryStringParts.push(`technologyIds[]=${id}`);
     });
   }
   if (params.vacancyTypes && params.vacancyTypes.length > 0) {
-    params.vacancyTypes.forEach(type => {
+    params.vacancyTypes.forEach((type) => {
       queryStringParts.push(`vacancyTypes[]=${type}`);
     });
   }
@@ -31,6 +33,12 @@ export function buildQueryString(params: Params): string {
   }
   if (params.location) {
     queryStringParts.push(`location=${params.location}`);
+  }
+  if (params.limit && params.limit > 0) {
+    queryStringParts.push(`limit=${params.limit}`);
+  }
+  if (params.page && params.page > 0) {
+    queryStringParts.push(`page=${params.page}`);
   }
 
   return queryStringParts.join("&");

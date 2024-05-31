@@ -13,10 +13,9 @@ import {
 } from "./style";
 
 const Footer = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { user } = useUserContext();
-  
+
   return (
     <FooterStyle>
       <div>
@@ -38,13 +37,15 @@ const Footer = () => {
           Av. do Contorno, 2905 Santa Efigênia, Belo Horizonte - MG, 30110-080.
         </PDados>
       </Contatos>
-      
-        {!user && <div>
-          <EntrarBtn onClick={() => navigate('login')} >Entrar</EntrarBtn>
-          <CadastroBtn onClick={() => navigate('cadastro')}>Cadastre-se gratuitamente</CadastroBtn>        
-        </div> }
-          
-              
+
+      {!user && (
+        <div>
+          <EntrarBtn onClick={() => navigate("login")}>Entrar</EntrarBtn>
+          <CadastroBtn onClick={() => navigate("cadastro")}>
+            Cadastre-se gratuitamente
+          </CadastroBtn>
+        </div>
+      )}
     </FooterStyle>
   );
 };

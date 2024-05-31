@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const PagListagem = () => {
   const navigate = useNavigate();
 
-  const { searchTerm, searchLocation } = useSearchContext();
+  const { searchTerm, searchLocation, searchTechnology } = useSearchContext();
 
   const { user } = useUserContext();
 
@@ -23,7 +23,7 @@ const PagListagem = () => {
 
   const [vacancyRole, setVacancyRole] = useState(searchTerm || "");
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
-    []
+    searchTechnology ? [searchTechnology.toString()] : []
   );
   const [vacancyTypes, setVacancyTypes] = useState<string[]>([]);
   const [salaryRange, setSalaryRange] = useState([0, 80000]);
@@ -33,6 +33,7 @@ const PagListagem = () => {
   const { vacanciesList, fetchVacancies } = useVacancyList({
     vacancyRole: searchTerm || undefined,
     location: searchLocation || undefined,
+    technologyIds: searchTechnology || undefined,
   });
 
   const handleSliderChange = (newValues: number | readonly number[]) => {
@@ -98,6 +99,9 @@ const PagListagem = () => {
                       <S.CheckboxInput
                         type="checkbox"
                         value={technology.id}
+                        checked={selectedTechnologies.includes(
+                          technology.id.toString()
+                        )}
                         onChange={handleFilterChange(setSelectedTechnologies)}
                       />
                       <S.CheckboxLabel htmlFor={technology.tecName}>
@@ -226,7 +230,11 @@ const PagListagem = () => {
               <S.Listagemdiv2>
                 <S.Graficodiv>
                   <S.Imgdiv>
-                    <S.Styleimg style={user ? {} : { filter: 'blur(10px)' }} src="/src/assets/imgs/Frame 47.png" alt="" />
+                    <S.Styleimg
+                      style={user ? {} : { filter: "blur(10px)" }}
+                      src="/src/assets/imgs/Frame 47.png"
+                      alt=""
+                    />
 
                     {!user && (
                       <S.Btdiv>
@@ -241,7 +249,11 @@ const PagListagem = () => {
                   </S.Imgdiv>
 
                   <S.Imgdiv>
-                    <S.Styleimg style={user ? {} : { filter: 'blur(10px)' }} src="/src/assets/imgs/Frame 48.png" alt="" />
+                    <S.Styleimg
+                      style={user ? {} : { filter: "blur(10px)" }}
+                      src="/src/assets/imgs/Frame 48.png"
+                      alt=""
+                    />
 
                     {!user && (
                       <S.Btdiv>

@@ -6,10 +6,7 @@ import { EXCEPTION_MESSAGE } from "../../utils/enums/exception-message";
 
 export const Register = async (params: RegisterDTO.IParams) => {
   try {
-    await api.post<RegisterDTO.IResponse>(
-      "/auth/register",
-      params
-    );
+    await api.post<RegisterDTO.IResponse>("/auth/register", params);
 
     return {
       success: true,
@@ -19,14 +16,14 @@ export const Register = async (params: RegisterDTO.IParams) => {
     if (isAxiosError(error)) {
       return {
         success: false,
-        message: "MESSAGE",
-        code: "CODIGO",
+        message: error.message,
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };
@@ -46,13 +43,13 @@ export const Login = async (params: LoginDTO.IParams) => {
       return {
         success: false,
         message: error.message,
-        code: "CODIGO",
+        code: error.code,
       };
     }
     return {
       success: false,
-      message: "MESSAGE",
-      code: "CODIGO",
+      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
+      code: HttpStatusCode.InternalServerError,
     };
   }
 };

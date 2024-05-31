@@ -20,7 +20,7 @@ export const TitleDados = styled.p`
   font-weight: 500;
   margin-bottom: 10px;
 `;
-export const PDados = styled.div` 
+export const PDados = styled.div`
   font-weight: 400;
   color: ${(props) => props.theme.colors.branco};
   font-size: ${(props) => props.theme.fontSizes.medium};

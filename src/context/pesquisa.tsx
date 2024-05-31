@@ -5,6 +5,8 @@ interface SearchContext {
   setSearchTerm: (value: string) => void;
   searchLocation: string | null;
   setSearchLocation: (value: string) => void;
+  searchTechnology: number[] | null;
+  setSearchTechnology: (value: number[]) => void;
 }
 
 export const SearchContext = createContext<SearchContext>({
@@ -12,6 +14,8 @@ export const SearchContext = createContext<SearchContext>({
   searchTerm: null,
   setSearchTerm: () => {},
   setSearchLocation: () => {},
+  searchTechnology: null,
+  setSearchTechnology: () => {},
 });
 
 interface SearchProviderProps {
@@ -21,10 +25,18 @@ interface SearchProviderProps {
 export const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchLocation, setSearchLocation] = useState<string>("");
+  const [searchTechnology, setSearchTechnology] = useState<number[]>([]);
 
   return (
     <SearchContext.Provider
-      value={{ searchTerm, setSearchTerm, searchLocation, setSearchLocation }}
+      value={{
+        searchTerm,
+        setSearchTerm,
+        searchLocation,
+        setSearchLocation,
+        searchTechnology,
+        setSearchTechnology,
+      }}
     >
       {children}
     </SearchContext.Provider>

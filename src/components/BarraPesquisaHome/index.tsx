@@ -9,7 +9,8 @@ interface BarraPesquisaHomeProps {
 }
 
 const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
-  const { searchTerm, setSearchTerm, searchLocation, setSearchLocation } = useSearchContext()
+  const { searchTerm, setSearchTerm, searchLocation, setSearchLocation } =
+    useSearchContext();
   const { recentSearches, saveSearch } = useRecentSearches();
   const navigate = useNavigate();
 
@@ -57,7 +58,9 @@ const BarraPesquisaHome: React.FC<BarraPesquisaHomeProps> = ({ tema }) => {
       <S.RecentSearches>
         {tema === "light" && <span>Buscas mais recentes:</span>}
         {recentSearches.map((search, index) => (
-          <S.Recdiv key={index} onClick={() => setSearchTerm(search)}>{search}</S.Recdiv>
+          <S.Recdiv key={index} onClick={() => setSearchTerm(search)}>
+            {search}
+          </S.Recdiv>
         ))}
       </S.RecentSearches>
     </S.ConteinerP>

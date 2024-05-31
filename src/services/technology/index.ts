@@ -42,7 +42,8 @@ export const GetTechnology = async (params: GetTechnologyDTO.IParams) => {
 export const GetTechnologies = async (params: GetTechnologiesDTO.IParams) => {
   try {
     const response = await api.get<GetTechnologiesDTO.IResponse>(
-      "/technologies", {
+      "/technologies",
+      {
         params,
       }
     );

@@ -8,7 +8,7 @@ import { Login, Me } from "../../services/auth";
 import { FORM_MESSAGE } from "../../utils/enums/form-message";
 import { EmailOut, Userplus } from "../cadastro/style";
 import { useUserContext } from "../../hooks/user/use-user-context";
-import * as CONSTANTS from "../../utils/constants/constants"
+import * as CONSTANTS from "../../utils/constants/constants";
 import { useState } from "react";
 
 export const LoginPag = () => {
@@ -37,10 +37,9 @@ export const LoginPag = () => {
 
   const handleLogin = async (data: LoginFormData) => {
     const { ...rest } = data;
-    const { success, message, token } = await Login(rest);
+    const { success, token } = await Login(rest);
 
     if (!success || !token) {
-      console.log(message);
       setLoginError(true);
       return;
     }

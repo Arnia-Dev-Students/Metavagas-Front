@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ArrowRight } from "@styled-icons/bootstrap/ArrowRight"
+import { ArrowRight } from "@styled-icons/bootstrap/ArrowRight";
 
 export const LinkConteiner = styled.div`
   margin: 2px;
@@ -16,16 +16,15 @@ export const LinkDiv = styled.div`
   justify-content: space-between;
 `;
 export const Filtro = styled.div`
-font-size: 16px;
-font-weight: 400;
-color: ${(props) => props.theme.colors.preto};
+  font-size: 16px;
+  font-weight: 400;
+  color: ${(props) => props.theme.colors.preto};
 `;
 
 export const Linkp = styled.div`
-font-size: 12px;
-font-weight: 400;
-color:#8C8CA1;
-
+  font-size: 12px;
+  font-weight: 400;
+  color: #8c8ca1;
 `;
 export const ArrowRigth = styled(ArrowRight)`
   width: 20px;

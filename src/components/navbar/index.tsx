@@ -34,7 +34,6 @@ const NavBar: React.FC<Props> = ({ user }) => {
 
   const [isButtonsVisible, setisButtonVisible] = useState(false);
   const handleArrowClick = () => {
-    console.log(isButtonsVisible);
     setisButtonVisible(!isButtonsVisible);
   };
 

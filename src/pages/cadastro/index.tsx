@@ -11,7 +11,6 @@ import { Userplus } from "./style";
 import { useState } from "react";
 
 const Cadastro = () => {
-
   const [cadastroError, setcadastroError] = useState(false);
   const navigate = useNavigate();
 
@@ -54,11 +53,9 @@ const Cadastro = () => {
         navigate("/login");
       } else {
         setcadastroError(true);
-        console.log("Registration failed");
       }
     } catch (error) {
       setcadastroError(true);
-      console.error("Registration error:", error);
     }
   };
 
@@ -117,7 +114,9 @@ const Cadastro = () => {
         <S.DivForm>
           <S.LoginBtn>Cadastrar</S.LoginBtn>
           {cadastroError && (
-            <S.ErrorForm>Falha ao realizar o cadastro tente novamente</S.ErrorForm>
+            <S.ErrorForm>
+              Falha ao realizar o cadastro tente novamente
+            </S.ErrorForm>
           )}
         </S.DivForm>
 
