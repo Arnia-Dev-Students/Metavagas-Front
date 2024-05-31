@@ -16,9 +16,11 @@ export function buildQueryString(params: Params): string {
     queryStringParts.push(`vacancyRole=${params.vacancyRole}`);
   }
   if (params.technologyIds && params.technologyIds.length > 0) {
-    params.technologyIds.forEach((id) => {
-      queryStringParts.push(`technologyIds[]=${id}`);
-    });
+    params.technologyIds
+      .filter((id) => id > 0)
+      .forEach((id) => {
+        queryStringParts.push(`technologyIds[]=${id}`);
+      });
   }
   if (params.vacancyTypes && params.vacancyTypes.length > 0) {
     params.vacancyTypes.forEach((type) => {
