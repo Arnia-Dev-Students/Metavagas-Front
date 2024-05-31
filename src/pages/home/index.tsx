@@ -104,15 +104,15 @@ const Home = () => {
             <S.Wh100div>
               <S.Homeh2Yelow>Vagas de emprego em todo Brasil</S.Homeh2Yelow>
               <S.Flexdiv2>
-                <S.Filtrodiv onClick={handleTecnologiasClick}>
+                <S.Filtrodiv active={filterType === "tecnologias"} onClick={handleTecnologiasClick}>
                   <S.Monitor1 />
                   Tecnologia
                 </S.Filtrodiv>
-                <S.Filtrodiv onClick={handleCidadesClick}>
+                <S.Filtrodiv active={filterType === "cidades"} onClick={handleCidadesClick}>
                   <S.Local />
                   Cidades
                 </S.Filtrodiv>
-                <S.Filtrodiv onClick={handleCargosClick}>
+                <S.Filtrodiv active={filterType === "cargos"} onClick={handleCargosClick}>
                   <S.Maleta />
                   Cargos
                 </S.Filtrodiv>
