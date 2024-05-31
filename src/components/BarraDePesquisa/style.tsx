@@ -98,3 +98,7 @@ export const Glass = styled(MagnifyingGlass)`
   top: 50%;
   transform: translateX(-1550%);
 `;
+
+export const Wtspan = styled.span`
+color: white;
+`

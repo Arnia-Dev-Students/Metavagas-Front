@@ -148,12 +148,12 @@ const PagListagem = () => {
                   <S.SubH3>Regime de trabalho</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Clt" />
+                    <S.CheckboxInput disabled type="checkbox" value="Clt" />
                     <S.CheckboxLabel htmlFor="">Clt</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="PJ" />
+                    <S.CheckboxInput disabled type="checkbox" value="PJ" />
                     <S.CheckboxLabel htmlFor="">PJ</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
@@ -162,17 +162,17 @@ const PagListagem = () => {
                   <S.SubH3>Tamanho da empresa</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Pequena" />
+                    <S.CheckboxInput disabled type="checkbox" value="Pequena" />
                     <S.CheckboxLabel htmlFor="">Pequena</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Média" />
+                    <S.CheckboxInput disabled type="checkbox" value="Média" />
                     <S.CheckboxLabel htmlFor="">Média</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Grande" />
+                    <S.CheckboxInput disabled type="checkbox" value="Grande" />
                     <S.CheckboxLabel htmlFor="">Grande</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>
@@ -206,17 +206,17 @@ const PagListagem = () => {
                   <S.SubH3>Nível de experiência</S.SubH3>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Júnior" />
+                    <S.CheckboxInput disabled type="checkbox" value="Júnior" />
                     <S.CheckboxLabel htmlFor="">Júnior</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Pleno" />
+                    <S.CheckboxInput disabled type="checkbox" value="Pleno" />
                     <S.CheckboxLabel htmlFor="">Pleno</S.CheckboxLabel>
                   </S.Inputsdiv>
 
                   <S.Inputsdiv>
-                    <S.CheckboxInput type="checkbox" value="Sênior" />
+                    <S.CheckboxInput disabled type="checkbox" value="Sênior" />
                     <S.CheckboxLabel htmlFor="">Sênior</S.CheckboxLabel>
                   </S.Inputsdiv>
                 </div>

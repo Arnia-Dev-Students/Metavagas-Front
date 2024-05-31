@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch } from "react";
 import * as S from "./style";
+import { useRecentSearches } from "../../hooks/user/use-recent-searches";
 
 interface BarraPesquisaProps {
   tema: "light" | "dark";
@@ -18,6 +19,10 @@ const BarraPesquisa = ({
   setLocation,
   handleFilter,
 }: BarraPesquisaProps) => {
+  
+
+  const { recentSearches } = useRecentSearches();
+
   const handleVacancyRoleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setVacancyRole(event.target.value);
   };
@@ -56,11 +61,13 @@ const BarraPesquisa = ({
         </S.ConteinerB>
 
         <S.RecentSearches>
-          {tema === "light" && <span>Buscas mais recentes:</span>}
-          <S.Recdiv>Java</S.Recdiv>
-          <S.Recdiv>PHP</S.Recdiv>
-          <S.Recdiv>Phyton</S.Recdiv>
-          <S.Recdiv>React</S.Recdiv>
+          <S.Wtspan>Buscas mais recentes:</S.Wtspan>
+
+          {recentSearches.map((search, index) => (
+            <S.Recdiv key={index} onClick={() => setVacancyRole(search)}>
+              {search}
+            </S.Recdiv>
+          ))}
         </S.RecentSearches>
       </S.ConteinerP>
     </>
