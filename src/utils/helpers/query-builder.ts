@@ -5,6 +5,8 @@ type Params = {
   wageMin?: number;
   wageMax?: number;
   location?: string;
+  limit?: number;
+  page?: number;
 };
 
 export function buildQueryString(params: Params): string {
@@ -31,6 +33,12 @@ export function buildQueryString(params: Params): string {
   }
   if (params.location) {
     queryStringParts.push(`location=${params.location}`);
+  }
+  if (params.limit && params.limit > 0) {
+    queryStringParts.push(`limit=${params.limit}`)
+  }
+  if (params.page && params.page > 0) {
+    queryStringParts.push(`page=${params.page}`)
   }
 
   return queryStringParts.join("&");

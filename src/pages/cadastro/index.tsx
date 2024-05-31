@@ -54,11 +54,9 @@ const Cadastro = () => {
         navigate("/login");
       } else {
         setcadastroError(true);
-        console.log("Registration failed");
       }
     } catch (error) {
       setcadastroError(true);
-      console.error("Registration error:", error);
     }
   };
 

@@ -1,18 +1,38 @@
+import { useNavigate } from "react-router-dom";
+import { useSearchContext } from "../../hooks/user/use-search-context";
 import { ArrowRigth, Filtro, LinkConteiner, LinkDiv, Linkp } from "./style";
 
 interface LinksProps {
-  filtro: string;
-  onClick: () => void;
+  filterItem: {
+    id: number;
+    title: string;
+  }
+  filterType: "cidades" | "tecnologias" | "cargos"
 }
 
-const LinksRapidos = ({ filtro, onClick }: LinksProps) => (
-  <LinkConteiner onClick={onClick}>
+const LinksRapidos = ({ filterItem, filterType }: LinksProps) => {
+  const { setSearchTerm, setSearchLocation, setSearchTechnology } = useSearchContext()
+  const navigate = useNavigate();
+
+  const handleSearchChange = () => {
+    filterType === "cargos" && setSearchTerm(filterItem.title);
+    filterType === "cidades" && setSearchLocation(filterItem.title);
+    filterType === "tecnologias" && setSearchTechnology([filterItem.id]);
+  };
+
+  const handleSearch = () => {
+    handleSearchChange()
+    navigate("/listagem");
+  };
+  
+  return (
+  <LinkConteiner onClick={handleSearch}>
     <LinkDiv>
       <Linkp>vagas</Linkp>
-      <Filtro>{filtro}</Filtro>
+      <Filtro>{filterItem.title}</Filtro>
     </LinkDiv>
     <ArrowRigth  />
-  </LinkConteiner>
-);
+  </LinkConteiner>)
+};
 
 export default LinksRapidos;

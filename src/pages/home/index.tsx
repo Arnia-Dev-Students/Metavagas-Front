@@ -10,34 +10,37 @@ import BarraPesquisaHome from "../../components/BarraPesquisaHome";
 import { useVacancyList } from "../../hooks/vacancy/use-vacancy-list";
 import { useEffect, useState } from "react";
 
+type FilteredArray = {
+  id: number,
+  title: string,
+}
+
 const Home = () => {
   const navigate = useNavigate()
   const { user } = useUserContext()
+  const { vacanciesList } = useVacancyList({ limit: 16 });
 
-  const { vacanciesList } = useVacancyList({});
-    
-  console.log(vacanciesList);
 
-  const [filteredArray, setFilteredArray] = useState<string[]>([]);
-  const [filterType, setFilterType] = useState<string>('');
+  const [filteredArray, setFilteredArray] = useState<FilteredArray[]>([]);
+  const [filterType, setFilterType] = useState<"cidades" | "tecnologias" | "cargos">("tecnologias");
   
   const handleTecnologiasClick = () => {
     const tecnologias = vacanciesList?.vacancies.flatMap(vacancy =>
-      vacancy.technologies.map(tech => tech.tecName)).slice(0, 16) || [];
+      vacancy.technologies.map(tech => {return {id: tech.id, title: tech.tecName}})).slice(0, 16) || [];
     setFilteredArray(tecnologias);
-    setFilterType('Tecnologia');
+    setFilterType('tecnologias');
   };
 
   const handleCidadesClick = () => {
-    const cidades = vacanciesList?.vacancies.map(vacancy => vacancy.location).slice(0, 16) || [];
+    const cidades = vacanciesList?.vacancies.map(vacancy => {return {id: vacancy.id, title: vacancy.location}}) || [];
     setFilteredArray(cidades);
-    setFilterType('Cidades');
+    setFilterType('cidades');
   };
 
   const handleCargosClick = () => {
-    const cargos = vacanciesList?.vacancies.map(vacancy => vacancy.vacancyRole).slice(0, 16) || [];
+    const cargos = vacanciesList?.vacancies.map(vacancy => {return {id: vacancy.id, title: vacancy.vacancyRole}}) || [];
     setFilteredArray(cargos);
-    setFilterType('Cargos');
+    setFilterType('cargos');
   };
 
   useEffect(() => {
@@ -127,7 +130,7 @@ const Home = () => {
         <S.Conteiner85>
         <S.GridLinks>
       {filteredArray.map((item, index) => (
-        <LinksRapidos key={index} filtro={item} onClick={() => {}} />
+        <LinksRapidos key={index} filterType={filterType} filterItem={item} />
       ))}
       </S.GridLinks>
         </S.Conteiner85>

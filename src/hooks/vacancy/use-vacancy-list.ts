@@ -36,14 +36,25 @@ type AxiosProps = {
   wageMin?: number;
   wageMax?: number;
   location?: string;
+  limit?: number;
+  page?: number;
 };
 
 type Props = {
   vacancyRole?: string;
   location?: string;
+  technologyIds?: number[];
+  limit?: number;
+  page?: number;
 };
 
-export const useVacancyList = ({ location, vacancyRole}: Props) => {
+export const useVacancyList = ({
+  location,
+  vacancyRole,
+  technologyIds,
+  limit,
+  page,
+}: Props) => {
   const [state, setState] = useState<State>(INITIAL_STATE);
 
   const fetchVacancies = async (props: AxiosProps) => {
@@ -60,7 +71,7 @@ export const useVacancyList = ({ location, vacancyRole}: Props) => {
   };
 
   useEffect(() => {
-    fetchVacancies({location, vacancyRole});
+    fetchVacancies({ location, vacancyRole, technologyIds, limit, page });
   }, []);
 
   return {

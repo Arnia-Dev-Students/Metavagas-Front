@@ -37,10 +37,9 @@ export const LoginPag = () => {
 
   const handleLogin = async (data: LoginFormData) => {
     const { ...rest } = data;
-    const { success, message, token } = await Login(rest);
+    const { success, token } = await Login(rest);
 
     if (!success || !token) {
-      console.log(message);
       setLoginError(true);
       return;
     }

@@ -3,7 +3,6 @@ import {
   CreateVacancyDTO,
   DeleteVacancyDTO,
   GetAllVacanciesDTO,
-  GetAllVacanciesPublicDTO,
   GetVacancyDTO,
   UpdateVacancyDTO,
 } from "./DTO";
@@ -44,13 +43,11 @@ export const CreateVacancy = async (params: CreateVacancyDTO.IParams) => {
 
 export const GetVacancies = async (params: GetAllVacanciesDTO.IParams) => {
   try {
-
     const queryString = buildQueryString(params)
 
-    console.log(queryString)
     const response = await api.get<GetAllVacanciesDTO.IResponse>("/vacancies?" + queryString, {
     })
-  
+
     return {
       success: true,
       message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
@@ -143,38 +140,6 @@ export const DeleteVacancy = async (params: DeleteVacancyDTO.IParams) => {
       success: true,
       message: SUCCESSFUL_MESSAGE.DELETE_VACANCY,
       vacancy: response.data,
-    };
-  } catch (error) {
-    if (isAxiosError(error)) {
-      return {
-        success: false,
-        message: error.message,
-        code: error.code,
-      };
-    }
-    return {
-      success: false,
-      message: EXCEPTION_MESSAGE.INTERNAL_SERVER_ERROR,
-      code: HttpStatusCode.InternalServerError,
-    };
-  }
-};
-
-export const getAllVacanciesPublic = async (
-  params: GetAllVacanciesPublicDTO.IParams
-) => {
-  try {
-    const response = await api.get<GetAllVacanciesPublicDTO.IResponse>(
-      "/vacancies/public",
-      {
-        params,
-      }
-    );
-
-    return {
-      success: true,
-      message: SUCCESSFUL_MESSAGE.GET_VACANCIES,
-      vacancies: response.data,
     };
   } catch (error) {
     if (isAxiosError(error)) {
