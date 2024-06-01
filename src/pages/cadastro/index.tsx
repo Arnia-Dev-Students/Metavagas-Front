@@ -11,6 +11,12 @@ import { Userplus } from "./style";
 import { useState } from "react";
 
 const Cadastro = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   const [cadastroError, setcadastroError] = useState(false);
   const navigate = useNavigate();
 
@@ -88,9 +94,14 @@ const Cadastro = () => {
           <S.Inputlabel htmlFor="pasword">Senha:</S.Inputlabel>
           <S.Inputlogin
             {...register("password")}
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             placeholder="*************"
           />
+          {isPasswordVisible ? (
+            <S.EyeOff onClick={togglePasswordVisibility} />
+          ) : (
+            <S.EyeOut onClick={togglePasswordVisibility} />
+          )}
           {errors.password && (
             <S.ErrorForm>{errors.password.message}</S.ErrorForm>
           )}
@@ -102,9 +113,15 @@ const Cadastro = () => {
           </S.Inputlabel>
           <S.Inputlogin
             {...register("confirmPassword")}
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             placeholder="*************"
           />
+
+          {isPasswordVisible ? (
+            <S.EyeOff onClick={togglePasswordVisibility} />
+          ) : (
+            <S.EyeOut onClick={togglePasswordVisibility} />
+          )}
 
           {errors.confirmPassword && (
             <S.ErrorForm>{errors.confirmPassword.message}</S.ErrorForm>

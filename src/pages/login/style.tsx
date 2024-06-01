@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { EyeOffOutline } from "@styled-icons/evaicons-outline/EyeOffOutline";
+import { EyeOutline } from "@styled-icons/evaicons-outline/EyeOutline";
 
 export const Plogin = styled.p`
   color: ${(props) => props.theme.colors.branco};
@@ -51,6 +53,7 @@ export const Formh3 = styled.p`
 export const DivForm = styled.div`
   width: 100%;
   margin-top: 20px;
+  position: relative;
 `;
 export const Inputlabel = styled.label`
   width: 100%;
@@ -133,4 +136,22 @@ export const Pcard = styled.p`
 export const ErrorForm = styled.span`
   font-size: ${(props) => props.theme.fontSizes.small};
   color: red;
+`;
+
+export const EyeOut = styled(EyeOutline)`
+  width: 20px;
+  color: #8c8ca1;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -30px;
+  cursor: pointer;
+`;
+
+export const EyeOff = styled(EyeOffOutline)`
+  width: 20px;
+  color: #8c8ca1;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: -30px;
+  cursor: pointer;
 `;

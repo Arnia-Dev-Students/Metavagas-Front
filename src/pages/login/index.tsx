@@ -12,6 +12,12 @@ import * as CONSTANTS from "../../utils/constants/constants";
 import { useState } from "react";
 
 export const LoginPag = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   const [loginError, setLoginError] = useState(false);
   const navigate = useNavigate();
   const { updateUser } = useUserContext();
@@ -64,7 +70,7 @@ export const LoginPag = () => {
           <S.Inputlabel htmlFor="email">Seu e-mail</S.Inputlabel>
           <S.Inputlogin
             type="text"
-            placeholder="ana@gmail.com"
+            placeholder="arnia@gmail.com"
             {...register("email")}
           />
 
@@ -75,9 +81,14 @@ export const LoginPag = () => {
           <S.Inputlabel htmlFor="senha">Senha</S.Inputlabel>
           <S.Inputlogin
             {...register("password")}
-            type="password"
-            placeholder="*************"
+            type={isPasswordVisible ? "text" : "password"}
+            placeholder="***********"
           />
+          {isPasswordVisible ? (
+            <S.EyeOff onClick={togglePasswordVisibility} />
+          ) : (
+            <S.EyeOut onClick={togglePasswordVisibility} />
+          )}
 
           {errors.password && (
             <S.ErrorForm>{errors.password.message}</S.ErrorForm>
